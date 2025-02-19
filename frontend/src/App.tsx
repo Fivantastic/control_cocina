@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider, createTheme } from '@mui/material';
 import MainLayout from './layouts/MainLayout';
 import ProductsPage from './containers/ProductsPage';
+import MenuPage from './containers/MenuPage';
 
 // Crear el tema de la aplicación
 const theme = createTheme({
@@ -34,6 +35,7 @@ function App() {
           <MainLayout>
             <Routes>
               <Route path="/" element={<ProductsPage />} />
+              <Route path="/menus" element={<MenuPage />} />
               <Route path="/reports" element={<div>Reportes (En desarrollo)</div>} />
               <Route path="/settings" element={<div>Configuración (En desarrollo)</div>} />
               <Route path="*" element={<Navigate to="/" replace />} />
