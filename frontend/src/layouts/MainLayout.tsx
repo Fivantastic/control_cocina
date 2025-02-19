@@ -12,13 +12,13 @@ import {
     ListItemText,
     Toolbar,
     Typography,
-    useTheme,
 } from '@mui/material';
 import {
     Menu as MenuIcon,
     Inventory as InventoryIcon,
     Assessment as AssessmentIcon,
     Settings as SettingsIcon,
+    RestaurantMenu as RestaurantMenuIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -30,12 +30,12 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
 
     const menuItems = [
         { text: 'Inventario', icon: <InventoryIcon />, path: '/' },
+        { text: 'Menús', icon: <RestaurantMenuIcon />, path: '/menus' },
         { text: 'Reportes', icon: <AssessmentIcon />, path: '/reports' },
         { text: 'Configuración', icon: <SettingsIcon />, path: '/settings' },
     ];

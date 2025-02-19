@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { testConnection } = require('./utils/db');
 const productRoutes = require('./routes/productRoutes');
+const menuRoutes = require('./routes/menuRoutes');
 
 const app = express();
 
@@ -28,13 +29,18 @@ app.get('/', (req, res) => {
       byType: '/api/products/type/:typeId',
       byId: '/api/products/:id',
       updateStock: '/api/products/:id/stock',
-      updateMinimumStock: '/api/products/:id/minimum-stock'
+      updateMinimumStock: '/api/products/:id/minimum-stock',
+      menu: {
+        byWeek: '/api/menu/week/:weekNumber',
+        allWeeks: '/api/menu/weeks'
+      }
     }
   });
 });
 
 // Routes
 app.use('/api/products', productRoutes);
+app.use('/api/menu', menuRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Product, UpdateStockPayload, UpdateMinimumStockPayload } from '../types/product';
+import { MenuResponse, WeeksResponse } from '../types/menu';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
@@ -50,6 +51,20 @@ export const productService = {
     updateMinimumStock: async (id: number, payload: UpdateMinimumStockPayload): Promise<void> => {
         await api.patch(`/products/${id}/minimum-stock`, payload);
     },
+};
+
+export const menuService = {
+    // Get menu by week number
+    getMenuByWeek: async (weekNumber: number): Promise<MenuResponse> => {
+        const response = await api.get(`/menu/week/${weekNumber}`);
+        return response.data;
+    },
+
+    // Get all available menu weeks
+    getAllMenuWeeks: async (): Promise<WeeksResponse> => {
+        const response = await api.get('/menu/weeks');
+        return response.data;
+    }
 };
 
 export default api;
