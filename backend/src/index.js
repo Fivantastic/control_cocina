@@ -4,6 +4,8 @@ const cors = require('cors');
 const { testConnection } = require('./utils/db');
 const productRoutes = require('./routes/productRoutes');
 const menuRoutes = require('./routes/menuRoutes');
+const supplierRoutes = require('./routes/supplierRoutes');
+const deliveryNoteRoutes = require('./routes/deliveryNoteRoutes');
 
 const app = express();
 
@@ -29,6 +31,8 @@ app.get('/', (req, res) => {
       byType: '/api/products/type/:typeId',
       byId: '/api/products/:id',
       updateStock: '/api/products/:id/stock',
+      suppliers: '/api/suppliers',
+      deliveryNotes: '/api/delivery-notes',
       updateMinimumStock: '/api/products/:id/minimum-stock',
       menu: {
         byWeek: '/api/menu/week/:weekNumber',
@@ -41,6 +45,8 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/menus', menuRoutes);
+app.use('/api/suppliers', supplierRoutes);
+app.use('/api/delivery-notes', deliveryNoteRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

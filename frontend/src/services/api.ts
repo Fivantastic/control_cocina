@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Product, UpdateStockPayload, UpdateMinimumStockPayload } from '../types/product';
 import { MenuResponse, WeeksResponse } from '../types/menu';
+import { Supplier } from '../types/supplier';
+import { DeliveryNote } from '../types/deliveryNote';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
@@ -64,6 +66,80 @@ export const menuService = {
     getAllMenuWeeks: async (): Promise<WeeksResponse> => {
         const response = await api.get('/menus/weeks');
         return response.data;
+    }
+};
+
+export const supplierService = {
+    // Get all suppliers
+    getAllSuppliers: async (): Promise<Supplier[]> => {
+        const response = await api.get('/suppliers');
+        return response.data;
+    },
+
+    // Get supplier by ID
+    getSupplierById: async (id: number): Promise<Supplier> => {
+        const response = await api.get(`/suppliers/${id}`);
+        return response.data;
+    },
+
+    // Create new supplier
+    createSupplier: async (supplier: Omit<Supplier, 'id' | 'created_at' | 'updated_at'>): Promise<Supplier> => {
+        const response = await api.post('/suppliers', supplier);
+        return response.data;
+    },
+
+    // Update supplier
+    updateSupplier: async (id: number, supplier: Partial<Supplier>): Promise<Supplier> => {
+        const response = await api.put(`/suppliers/${id}`, supplier);
+        return response.data;
+    },
+
+    // Delete supplier
+    deleteSupplier: async (id: number): Promise<void> => {
+        await api.delete(`/suppliers/${id}`);
+    }
+};
+
+export const deliveryNoteService = {
+    // Get all delivery notes
+    getAllDeliveryNotes: async (): Promise<DeliveryNote[]> => {
+        const response = await api.get('/delivery-notes');
+        return response.data;
+    },
+
+    // Get delivery note by ID
+    getDeliveryNoteById: async (id: number): Promise<DeliveryNote> => {
+        const response = await api.get(`/delivery-notes/${id}`);
+        return response.data;
+    },
+
+    // Get delivery notes by supplier
+    getDeliveryNotesBySupplier: async (supplierId: number): Promise<DeliveryNote[]> => {
+        const response = await api.get(`/delivery-notes/supplier/${supplierId}`);
+        return response.data;
+    },
+
+    // Get delivery notes by date range
+    getDeliveryNotesByDateRange: async (startDate: string, endDate: string): Promise<DeliveryNote[]> => {
+        const response = await api.get(`/delivery-notes/date-range?startDate=${startDate}&endDate=${endDate}`);
+        return response.data;
+    },
+
+    // Create new delivery note
+    createDeliveryNote: async (deliveryNote: Omit<DeliveryNote, 'id' | 'created_at' | 'updated_at'>): Promise<DeliveryNote> => {
+        const response = await api.post('/delivery-notes', deliveryNote);
+        return response.data;
+    },
+
+    // Update delivery note
+    updateDeliveryNote: async (id: number, deliveryNote: Partial<DeliveryNote>): Promise<DeliveryNote> => {
+        const response = await api.put(`/delivery-notes/${id}`, deliveryNote);
+        return response.data;
+    },
+
+    // Delete delivery note
+    deleteDeliveryNote: async (id: number): Promise<void> => {
+        await api.delete(`/delivery-notes/${id}`);
     }
 };
 
