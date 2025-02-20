@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/products', productRoutes);
-app.use('/api/menu', menuRoutes);
+app.use('/api/menus', menuRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
