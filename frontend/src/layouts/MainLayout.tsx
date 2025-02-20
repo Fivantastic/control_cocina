@@ -19,6 +19,8 @@ import {
     Assessment as AssessmentIcon,
     Settings as SettingsIcon,
     RestaurantMenu as RestaurantMenuIcon,
+    LocalShipping as LocalShippingIcon,
+    Business as BusinessIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -36,6 +38,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     const menuItems = [
         { text: 'Inventario', icon: <InventoryIcon />, path: '/' },
         { text: 'Menús', icon: <RestaurantMenuIcon />, path: '/menus' },
+        { text: 'Proveedores', icon: <BusinessIcon />, path: '/suppliers' },
+        { text: 'Albaranes', icon: <LocalShippingIcon />, path: '/delivery-notes' },
         { text: 'Reportes', icon: <AssessmentIcon />, path: '/reports' },
         { text: 'Configuración', icon: <SettingsIcon />, path: '/settings' },
     ];
