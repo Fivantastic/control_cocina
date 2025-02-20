@@ -56,13 +56,13 @@ export const productService = {
 export const menuService = {
     // Get menu by week number
     getMenuByWeek: async (weekNumber: number): Promise<MenuResponse> => {
-        const response = await api.get(`/menu/week/${weekNumber}`);
+        const response = await api.get(`/menus/week/${weekNumber}`);
         return response.data;
     },
 
     // Get all available menu weeks
     getAllMenuWeeks: async (): Promise<WeeksResponse> => {
-        const response = await api.get('/menu/weeks');
+        const response = await api.get('/menus/weeks');
         return response.data;
     }
 };

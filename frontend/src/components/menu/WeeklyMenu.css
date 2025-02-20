@@ -1,0 +1,68 @@
+.menu-container {
+    margin-top: 2rem;
+}
+
+.menu-header {
+    background-color: #dc3545;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.menu-cell {
+    vertical-align: top !important;
+    padding: 1rem !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.course-section {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.course-title {
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.garnish {
+    background-color: #f8f9fa;
+}
+
+.dessert {
+    background-color: #fff;
+}
+
+.bread-section {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.menu-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    background-color: #343a40;
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.nutrition-info {
+    text-align: center;
+}
+
+.MuiTableCell-head {
+    background-color: #f8f9fa !important;
+    font-weight: 600 !important;
+}
