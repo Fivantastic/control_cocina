@@ -6,6 +6,8 @@ const productRoutes = require('./routes/productRoutes');
 const menuRoutes = require('./routes/menuRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
 const deliveryNoteRoutes = require('./routes/deliveryNoteRoutes');
+const stockMovementRoutes = require('./routes/stockMovements');
+const menuStockRoutes = require('./routes/menuStock');
 
 const app = express();
 
@@ -47,6 +49,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/menus', menuRoutes);
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/delivery-notes', deliveryNoteRoutes);
+app.use('/api/stock', stockMovementRoutes);
+app.use('/api/menu-stock', menuStockRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
