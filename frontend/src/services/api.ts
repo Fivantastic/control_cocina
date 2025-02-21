@@ -3,6 +3,7 @@ import { Product, UpdateStockPayload, UpdateMinimumStockPayload } from '../types
 import { MenuResponse, WeeksResponse } from '../types/menu';
 import { Supplier } from '../types/supplier';
 import { DeliveryNote } from '../types/deliveryNote';
+import { StockMovement, ProductStock } from '../types/stock';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
@@ -53,6 +54,17 @@ export const productService = {
     updateMinimumStock: async (id: number, payload: UpdateMinimumStockPayload): Promise<void> => {
         await api.patch(`/products/${id}/minimum-stock`, payload);
     },
+};
+
+export const menuStockService = {
+    getStockNeeds: async (weekNumber: number) => {
+        const response = await axios.get(`/api/menu-stock/week/${weekNumber}/stock-needs`);
+        return response.data;
+    },
+    applyStock: async (weekNumber: number, stockUsage: any[]) => {
+        const response = await axios.post(`/api/menu-stock/week/${weekNumber}/apply-stock`, { stockUsage });
+        return response.data;
+    }
 };
 
 export const menuService = {
@@ -140,6 +152,37 @@ export const deliveryNoteService = {
     // Delete delivery note
     deleteDeliveryNote: async (id: number): Promise<void> => {
         await api.delete(`/delivery-notes/${id}`);
+    }
+};
+
+export const stockService = {
+    // Create stock movement
+    createMovement: async (movement: Omit<StockMovement, 'id' | 'created_at' | 'movement_date'>): Promise<{ id: number }> => {
+        const response = await api.post('/stock', movement);
+        return response.data.data;
+    },
+
+    // Get movements by delivery note item
+    getMovementsByItem: async (itemId: number): Promise<StockMovement[]> => {
+        const response = await api.get(`/stock/by-item/${itemId}`);
+        return response.data.data;
+    },
+
+    // Get product stock status
+    getProductStock: async (productId: number): Promise<ProductStock[]> => {
+        const response = await api.get(`/stock/product/${productId}`);
+        return response.data.data;
+    },
+
+    // Adjust stock manually
+    adjustStock: async (adjustment: {
+        delivery_note_item_id: number;
+        quantity: number;
+        remaining_quantity: number;
+        notes?: string;
+    }): Promise<{ id: number }> => {
+        const response = await api.post('/stock/adjust', adjustment);
+        return response.data.data;
     }
 };
 

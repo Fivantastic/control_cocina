@@ -23,7 +23,11 @@ import './WeeklyMenu.css';
 
 const DAYS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'];
 
-const WeeklyMenu: React.FC = () => {
+interface WeeklyMenuProps {
+    onWeekChange?: (weekNumber: number) => void;
+}
+
+const WeeklyMenu: React.FC<WeeklyMenuProps> = ({ onWeekChange }) => {
     const [selectedWeek, setSelectedWeek] = useState<number | null>(null);
     const [availableWeeks, setAvailableWeeks] = useState<number[]>([]);
     const [menuData, setMenuData] = useState<WeekMenu | null>(null);
@@ -37,7 +41,11 @@ const WeeklyMenu: React.FC = () => {
                 const response = await menuService.getAllMenuWeeks();
                 setAvailableWeeks(response.data);
                 if (response.data.length > 0 && !selectedWeek) {
-                    setSelectedWeek(response.data[0]);
+                    const firstWeek = response.data[0];
+setSelectedWeek(firstWeek);
+if (onWeekChange) {
+    onWeekChange(firstWeek);
+}
                 }
             } catch (err) {
                 setError('Error al cargar las semanas disponibles');
@@ -68,6 +76,9 @@ const WeeklyMenu: React.FC = () => {
 
     const handleWeekChange = (week: number) => {
         setSelectedWeek(week);
+        if (onWeekChange) {
+            onWeekChange(week);
+        }
     };
 
     const handleMenuTypeChange = (_: React.SyntheticEvent, newValue: 'lunch' | 'dinner') => {
