@@ -8,11 +8,15 @@ const supplierRoutes = require('./routes/supplierRoutes');
 const deliveryNoteRoutes = require('./routes/deliveryNoteRoutes');
 const stockMovementRoutes = require('./routes/stockMovements');
 const menuStockRoutes = require('./routes/menuStock');
+const deliveryNoteUploadRoutes = require('./routes/deliveryNoteUpload');
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // URL del frontend
+    optionsSuccessStatus: 200
+}));
 app.use(express.json());
 
 // Logging middleware
@@ -49,6 +53,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/menus', menuRoutes);
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/delivery-notes', deliveryNoteRoutes);
+app.use('/api/delivery-notes-upload', deliveryNoteUploadRoutes);
 app.use('/api/stock', stockMovementRoutes);
 app.use('/api/menu-stock', menuStockRoutes);
 
