@@ -201,10 +201,10 @@ function DeliveryNoteList() {
                     <TableBody>
                         {deliveryNotes.map((note) => (
                             <TableRow key={note.id}>
-                                <TableCell>{note.supplier_delivery_note_number}</TableCell>
-                                <TableCell>{note.supplier_name}</TableCell>
-                                <TableCell>{new Date(note.delivery_date).toLocaleDateString()}</TableCell>
-                                <TableCell>{note.total_amount.toFixed(2)} €</TableCell>
+                                <TableCell>{note.supplier_delivery_note_number || '-'}</TableCell>
+                                <TableCell>{note.supplier_name || '-'}</TableCell>
+                                <TableCell>{note.delivery_date ? new Date(note.delivery_date).toLocaleDateString() : '-'}</TableCell>
+                                <TableCell>{note.total_amount ? `${note.total_amount.toFixed(2)} €` : '-'}</TableCell>
                                 <TableCell className="actions">
                                     <Tooltip title="Ver detalles">
                                         <IconButton

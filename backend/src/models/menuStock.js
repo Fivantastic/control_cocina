@@ -1,4 +1,4 @@
-const { pool } = require('../utils/db');
+import { pool } from '../utils/db.js';
 
 class MenuStock {
     static async calculateMenuStockNeeds(weekNumber) {
@@ -154,4 +154,4 @@ class MenuStock {
     }
 }
 
-module.exports = MenuStock;
+export default MenuStock;

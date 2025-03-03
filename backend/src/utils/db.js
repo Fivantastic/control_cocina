@@ -1,15 +1,8 @@
-const mysql = require('mysql2/promise');
+import mysql from 'mysql2/promise';
+import { dbConfig } from '../config/env.js';
 
-const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    port: process.env.MYSQL_PORT,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+const pool = mysql.createPool(dbConfig);
+
 
 // Función para probar la conexión
 const testConnection = async () => {
@@ -25,7 +18,7 @@ const testConnection = async () => {
 };
 
 // Exportar tanto el pool como la función de prueba
-module.exports = {
+export {
     pool,
     testConnection
 };

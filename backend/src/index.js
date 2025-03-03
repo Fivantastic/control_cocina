@@ -1,20 +1,20 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const { testConnection } = require('./utils/db');
-const productRoutes = require('./routes/productRoutes');
-const menuRoutes = require('./routes/menuRoutes');
-const supplierRoutes = require('./routes/supplierRoutes');
-const deliveryNoteRoutes = require('./routes/deliveryNoteRoutes');
-const stockMovementRoutes = require('./routes/stockMovements');
-const menuStockRoutes = require('./routes/menuStock');
-const deliveryNoteUploadRoutes = require('./routes/deliveryNoteUpload');
+import express from 'express';
+import cors from 'cors';
+import { serverConfig } from './config/env.js';
+import { testConnection } from './utils/db.js';
+import productRoutes from './routes/productRoutes.js';
+import menuRoutes from './routes/menuRoutes.js';
+import supplierRoutes from './routes/supplierRoutes.js';
+import deliveryNoteRoutes from './routes/deliveryNoteRoutes.js';
+import stockMovementRoutes from './routes/stockMovements.js';
+import menuStockRoutes from './routes/menuStock.js';
+import deliveryNoteUploadRoutes from './routes/deliveryNoteUpload.js';
 
 const app = express();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // URL del frontend
+    origin: serverConfig.corsOrigin,
     optionsSuccessStatus: 200
 }));
 app.use(express.json());
@@ -66,8 +66,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-
 // Probar la conexión a la base de datos antes de iniciar el servidor
 async function startServer() {
   try {
@@ -79,9 +77,9 @@ async function startServer() {
     }
 
     // Iniciar el servidor
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-      console.log(`API documentation available at http://localhost:${PORT}`);
+    app.listen(serverConfig.port, () => {
+      console.log(`Server is running on port ${serverConfig.port}`);
+      console.log(`API documentation available at http://localhost:${serverConfig.port}`);
     });
   } catch (error) {
     console.error('Error al iniciar el servidor:', error);

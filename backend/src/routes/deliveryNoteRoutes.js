@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const deliveryNoteController = require('../controllers/deliveryNoteController');
+import deliveryNoteController from '../controllers/deliveryNoteController.js';
 
 // Get all delivery notes
 router.get('/', deliveryNoteController.getAllDeliveryNotes);
@@ -23,4 +23,4 @@ router.put('/:id', deliveryNoteController.updateDeliveryNote);
 // Delete delivery note
 router.delete('/:id', deliveryNoteController.deleteDeliveryNote);
 
-module.exports = router;
+export default router;

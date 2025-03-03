@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const MenuController = require('../controllers/menuController');
+import MenuController from '../controllers/menuController.js';
 
 // Obtener menú por número de semana
 router.get('/week/:weekNumber', MenuController.getMenuByWeek);
@@ -8,4 +8,4 @@ router.get('/week/:weekNumber', MenuController.getMenuByWeek);
 // Obtener todas las semanas disponibles
 router.get('/weeks', MenuController.getAllMenuWeeks);
 
-module.exports = router;
+export default router;

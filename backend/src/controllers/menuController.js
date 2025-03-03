@@ -1,4 +1,4 @@
-const Menu = require('../models/menu');
+import Menu from '../models/menu.js';
 
 class MenuController {
     static async getMenuByWeek(req, res) {
@@ -45,4 +45,4 @@ class MenuController {
     }
 }
 
-module.exports = MenuController;
+export default MenuController;

@@ -1,4 +1,4 @@
-const Supplier = require('../models/supplier');
+import Supplier from '../models/supplier.js';
 
 const supplierController = {
     // Get all suppliers
@@ -90,4 +90,4 @@ const supplierController = {
     }
 };
 
-module.exports = supplierController;
+export default supplierController;

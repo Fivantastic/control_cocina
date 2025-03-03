@@ -1,4 +1,4 @@
-const { pool } = require('../utils/db');
+import { pool } from '../utils/db.js';
 
 class StockMovement {
     static async create({
@@ -88,4 +88,4 @@ class StockMovement {
     }
 }
 
-module.exports = StockMovement;
+export default StockMovement;

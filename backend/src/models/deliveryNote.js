@@ -1,4 +1,4 @@
-const { pool } = require('../utils/db');
+import { pool } from '../utils/db.js';
 
 class DeliveryNote {
     static async getAll() {
@@ -300,4 +300,4 @@ class DeliveryNote {
     }
 }
 
-module.exports = DeliveryNote;
+export default DeliveryNote;

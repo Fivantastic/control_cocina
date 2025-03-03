@@ -1,4 +1,4 @@
-const MenuStock = require('../models/menuStock');
+import MenuStock from '../models/menuStock.js';
 
 class MenuStockController {
     static async getMenuStockNeeds(req, res) {
@@ -101,4 +101,4 @@ class MenuStockController {
     }
 }
 
-module.exports = MenuStockController;
+export default MenuStockController;
