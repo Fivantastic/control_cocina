@@ -1,161 +1,133 @@
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs').promises;
-const pdf = require('pdf-parse');
-const { pool } = require('../utils/db');
+import multer from 'multer';
+import { pool } from '../utils/db.js';
+import ocrService from '../services/ocrService.js';
 
-// Configurar multer para el almacenamiento de archivos
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
-
+// Configurar multer para usar almacenamiento en memoria
+const storage = multer.memoryStorage();
 const upload = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-        const filetypes = /pdf|jpeg|jpg|png/;
-        const mimetype = filetypes.test(file.mimetype);
-        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-
-        if (mimetype && extname) {
-            return cb(null, true);
+    storage,
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+        if (!allowedTypes.includes(file.mimetype)) {
+            cb(new Error('Solo se permiten archivos PDF e imágenes'));
+            return;
         }
-        cb(new Error('Solo se permiten archivos PDF e imágenes'));
+        cb(null, true);
+    },
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB
     }
 }).single('file');
 
 class DeliveryNoteUploadController {
-    static async uploadFile(req, res) {
+    async uploadFile(req, res) {
         try {
-            upload(req, res, async function (err) {
-                if (err) {
-                    return res.status(400).json({
-                        success: false,
-                        error: err.message
-                    });
-                }
-
-                if (!req.file) {
-                    return res.status(400).json({
-                        success: false,
-                        error: 'No se ha subido ningún archivo'
-                    });
-                }
-
-                try {
-                    let extractedData = {
-                        supplier_name: '',
-                        delivery_date: new Date().toISOString().split('T')[0],
-                        items: []
-                    };
-
-                    // Por ahora, solo devolvemos la estructura vacía para que puedas
-                    // rellenar los datos manualmente en la interfaz
-                    // TODO: Implementar OCR para extraer datos de imágenes automáticamente
-
-                    // Limpiar el archivo temporal
-                    await fs.unlink(req.file.path);
-
-                    res.json({
-                        success: true,
-                        data: extractedData
-                    });
-                } catch (error) {
-                    console.error('Error processing file:', error);
-                    // Intentar limpiar el archivo en caso de error
-                    try {
-                        await fs.unlink(req.file.path);
-                    } catch (unlinkError) {
-                        console.error('Error deleting temporary file:', unlinkError);
-                    }
-
-                    res.status(500).json({
-                        success: false,
-                        error: 'Error al procesar el archivo'
-                    });
-                }
+            await new Promise((resolve, reject) => {
+                upload(req, res, (err) => {
+                    if (err) reject(err);
+                    else resolve();
+                });
             });
+
+            if (!req.file) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'No se ha proporcionado ningún archivo'
+                });
+            }
+
+            // Procesar el archivo usando OCR.space
+            const extractedData = await ocrService.processImage(req.file.buffer);
+
+            res.json({
+                success: true,
+                data: extractedData
+            });
+
         } catch (error) {
-            console.error('Error in upload:', error);
+            console.error('Error processing delivery note:', error);
             res.status(500).json({
                 success: false,
-                error: 'Error interno del servidor'
+                error: 'Error al procesar el albarán'
             });
         }
     }
 
-    static async extractDataFromPDF(text) {
-        const PDFParser = require('../utils/pdfParser');
-        return PDFParser.parseText(text);
-    }
-
-    static async confirmDeliveryNote(req, res) {
+    async confirmDeliveryNote(req, res) {
         const connection = await pool.getConnection();
         try {
+            await connection.beginTransaction();
             const { supplier_name, delivery_date, items } = req.body;
 
-            await connection.beginTransaction();
-
-            // 1. Crear o obtener el proveedor
-            const [supplierResult] = await connection.query(
-                'INSERT INTO suppliers (name) VALUES (?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)',
+            // 1. Buscar o crear el proveedor
+            let [supplierRows] = await connection.query(
+                'SELECT id FROM suppliers WHERE name = ?',
                 [supplier_name]
             );
-            const supplier_id = supplierResult.insertId;
+
+            let supplier_id;
+            if (supplierRows.length === 0) {
+                const [newSupplier] = await connection.query(
+                    'INSERT INTO suppliers (name, type) VALUES (?, "general")',
+                    [supplier_name]
+                );
+                supplier_id = newSupplier.insertId;
+            } else {
+                supplier_id = supplierRows[0].id;
+            }
 
             // 2. Crear el albarán
-            const [deliveryNoteResult] = await connection.query(
+            const [deliveryNote] = await connection.query(
                 'INSERT INTO delivery_notes (supplier_id, delivery_date) VALUES (?, ?)',
                 [supplier_id, delivery_date]
             );
-            const delivery_note_id = deliveryNoteResult.insertId;
+            const deliveryNoteId = deliveryNote.insertId;
 
-            // 3. Crear los items del albarán
+            // 3. Procesar cada item
             for (const item of items) {
-                // Obtener o crear el producto
-                const [productResult] = await connection.query(
-                    'INSERT INTO products (name) VALUES (?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)',
+                // 3.1 Buscar o crear el producto
+                let [productRows] = await connection.query(
+                    'SELECT id FROM products WHERE name = ?',
                     [item.product_name]
                 );
-                const product_id = productResult.insertId;
 
-                // Crear el item del albarán
+                let product_id;
+                if (productRows.length === 0) {
+                    const [newProduct] = await connection.query(
+                        'INSERT INTO products (name, unit) VALUES (?, ?)',
+                        [item.product_name, item.unit]
+                    );
+                    product_id = newProduct.insertId;
+                } else {
+                    product_id = productRows[0].id;
+                }
+
+                // 3.2 Crear el item del albarán
                 await connection.query(
-                    `INSERT INTO delivery_note_items 
-                    (delivery_note_id, product_id, quantity, remaining_quantity, unit_type, 
-                    batch_number, expiry_date, price_per_unit, status) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'full')`,
-                    [
-                        delivery_note_id,
-                        product_id,
-                        item.quantity,
-                        item.quantity,
-                        item.unit,
-                        item.batch_number,
-                        item.expiry_date,
-                        item.price
-                    ]
+                    'INSERT INTO delivery_note_items (delivery_note_id, product_id, quantity, unit, batch_number, expiry_date, unit_price) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                    [deliveryNoteId, product_id, item.quantity, item.unit, item.batch_number, item.expiry_date, item.price]
+                );
+
+                // 3.3 Crear el movimiento de stock
+                await connection.query(
+                    'INSERT INTO stock_movements (product_id, movement_type, quantity, unit, reference_type, reference_id, batch_number, expiry_date) VALUES (?, "entrada", ?, ?, "delivery_note", ?, ?, ?)',
+                    [product_id, item.quantity, item.unit, deliveryNoteId, item.batch_number, item.expiry_date]
                 );
             }
 
             await connection.commit();
-
             res.json({
                 success: true,
-                data: {
-                    delivery_note_id
-                }
+                message: 'Albarán guardado correctamente',
+                deliveryNoteId
             });
+
         } catch (error) {
             await connection.rollback();
             console.error('Error confirming delivery note:', error);
             res.status(500).json({
                 success: false,
-                error: 'Error al confirmar el albarán'
+                error: 'Error al guardar el albarán'
             });
         } finally {
             connection.release();
@@ -163,4 +135,4 @@ class DeliveryNoteUploadController {
     }
 }
 
-module.exports = DeliveryNoteUploadController;
+export default new DeliveryNoteUploadController();

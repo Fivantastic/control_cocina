@@ -1,4 +1,4 @@
-const { pool } = require('../utils/db');
+import { pool } from '../utils/db.js';
 
 class Supplier {
     static async getAll() {
@@ -130,4 +130,4 @@ class Supplier {
     }
 }
 
-module.exports = Supplier;
+export default Supplier;

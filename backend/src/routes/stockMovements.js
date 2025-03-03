@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const StockMovementController = require('../controllers/stockMovementController');
+import StockMovementController from '../controllers/stockMovementController.js';
 
 // Crear un nuevo movimiento de stock
 router.post('/', StockMovementController.createMovement);
@@ -14,4 +14,4 @@ router.get('/product/:productId', StockMovementController.getProductStock);
 // Ajustar stock (para correcciones manuales)
 router.post('/adjust', StockMovementController.adjustStock);
 
-module.exports = router;
+export default router;

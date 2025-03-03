@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const productController = require('../controllers/productController');
+import productController from '../controllers/productController.js';
 
 // Get all products
 router.get('/', productController.getAllProducts);
@@ -23,4 +23,4 @@ router.patch('/:id/stock', productController.updateStock);
 // Update minimum stock
 router.patch('/:id/minimum-stock', productController.updateMinimumStock);
 
-module.exports = router;
+export default router;

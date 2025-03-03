@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const MenuStockController = require('../controllers/menuStockController');
+import MenuStockController from '../controllers/menuStockController.js';
 
 // Obtener las necesidades de stock para un menú semanal
 router.get('/week/:weekNumber/stock-needs', MenuStockController.getMenuStockNeeds);
@@ -8,4 +8,4 @@ router.get('/week/:weekNumber/stock-needs', MenuStockController.getMenuStockNeed
 // Aplicar el uso de stock para un menú semanal
 router.post('/week/:weekNumber/apply-stock', MenuStockController.applyMenuStock);
 
-module.exports = router;
+export default router;

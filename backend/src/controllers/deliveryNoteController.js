@@ -1,4 +1,4 @@
-const DeliveryNote = require('../models/deliveryNote');
+import DeliveryNote from '../models/deliveryNote.js';
 
 const deliveryNoteController = {
     // Get all delivery notes
@@ -134,4 +134,4 @@ const deliveryNoteController = {
     }
 };
 
-module.exports = deliveryNoteController;
+export default deliveryNoteController;

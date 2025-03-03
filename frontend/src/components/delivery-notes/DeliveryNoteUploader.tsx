@@ -14,7 +14,13 @@ import {
     ListItem,
     IconButton,
     TextField,
-    Snackbar
+    Snackbar,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
 } from '@mui/material';
 import { CloudUpload as CloudUploadIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
@@ -32,6 +38,7 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 interface ExtractedItem {
+    product_code: string;
     product_name: string;
     quantity: number;
     unit: string;
@@ -44,6 +51,11 @@ interface DeliveryNoteData {
     supplier_name: string;
     delivery_date: string;
     items: ExtractedItem[];
+    debug_logs?: {
+        parsed_text?: string;
+        supplier_detection?: string;
+        product_lines?: string[];
+    };
 }
 
 const DeliveryNoteUploader: React.FC = () => {
@@ -53,7 +65,12 @@ const DeliveryNoteUploader: React.FC = () => {
     const [extractedData, setExtractedData] = useState<DeliveryNoteData>({
         supplier_name: '',
         delivery_date: new Date().toISOString().split('T')[0],
-        items: []
+        items: [],
+        debug_logs: {
+            parsed_text: '',
+            supplier_detection: '',
+            product_lines: []
+        }
     });
     const [showPreview, setShowPreview] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -91,7 +108,22 @@ const DeliveryNoteUploader: React.FC = () => {
 
             const data = await response.json();
             if (data.success) {
-                setExtractedData(data.data);
+                // Actualizar el estado con los datos extraídos
+                const extractedData = data.data;
+                setExtractedData({
+                    supplier_name: extractedData.supplier_name || '',
+                    delivery_date: extractedData.delivery_date || new Date().toISOString().split('T')[0],
+                    items: extractedData.items.map((item: ExtractedItem) => ({
+                        product_code: item.product_code || '',
+                        product_name: item.product_name || '',
+                        quantity: item.quantity || 0,
+                        unit: item.unit || 'ud',
+                        batch_number: item.batch_number || '',
+                        expiry_date: item.expiry_date || '',
+                        price: item.price || 0
+                    })),
+                    debug_logs: extractedData.debug_logs
+                });
                 setShowPreview(true);
             } else {
                 setError(data.error || 'Error al extraer datos del archivo');
@@ -125,7 +157,12 @@ const DeliveryNoteUploader: React.FC = () => {
                 setExtractedData({
                     supplier_name: '',
                     delivery_date: new Date().toISOString().split('T')[0],
-                    items: []
+                    items: [],
+                    debug_logs: {
+                        parsed_text: '',
+                        supplier_detection: '',
+                        product_lines: []
+                    }
                 });
                 setShowPreview(false);
                 setSuccessMessage('Albarán guardado correctamente');
@@ -175,6 +212,73 @@ const DeliveryNoteUploader: React.FC = () => {
             >
                 <DialogTitle>Verificar Datos Extraídos</DialogTitle>
                 <DialogContent>
+                    {/* Sección de Logs OCR */}
+                    {extractedData.debug_logs && (
+                        <Box sx={{ mb: 3 }}>
+                            <Typography variant="h6" gutterBottom>Información de Depuración OCR</Typography>
+                            <Paper sx={{ p: 2, bgcolor: '#f5f5f5' }}>
+                                <Typography variant="subtitle2" gutterBottom>Texto Reconocido:</Typography>
+                                <Box sx={{ 
+                                    whiteSpace: 'pre-wrap',
+                                    fontFamily: 'monospace',
+                                    fontSize: '0.875rem',
+                                    mb: 2,
+                                    p: 1,
+                                    bgcolor: '#fff',
+                                    border: '1px solid #ddd',
+                                    borderRadius: 1,
+                                    maxHeight: '200px',
+                                    overflow: 'auto'
+                                }}>
+                                    {extractedData.debug_logs.parsed_text || 'No hay texto reconocido'}
+                                </Box>
+
+                                <Typography variant="subtitle2" gutterBottom>Detección de Proveedor:</Typography>
+                                <Box sx={{ 
+                                    p: 1,
+                                    mb: 2,
+                                    bgcolor: '#fff',
+                                    border: '1px solid #ddd',
+                                    borderRadius: 1
+                                }}>
+                                    {extractedData.debug_logs.supplier_detection || 'No se detectó proveedor'}
+                                </Box>
+
+                                <Typography variant="subtitle2" gutterBottom>Productos Detectados:</Typography>
+                                <TableContainer component={Paper} sx={{ maxHeight: 400, overflow: 'auto' }}>
+                                    <Table size="small" stickyHeader>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Código</TableCell>
+                                                <TableCell>Nombre</TableCell>
+                                                <TableCell>Cantidad</TableCell>
+                                                <TableCell>Precio</TableCell>
+                                                <TableCell>Lote</TableCell>
+                                                <TableCell>Caducidad</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {extractedData.items.map((item, index) => (
+                                                <TableRow key={index} hover>
+                                                    <TableCell>{item.product_code}</TableCell>
+                                                    <TableCell>{item.product_name}</TableCell>
+                                                    <TableCell>{item.quantity}</TableCell>
+                                                    <TableCell>{item.price?.toFixed(2)} €</TableCell>
+                                                    <TableCell>{item.batch_number}</TableCell>
+                                                    <TableCell>
+                                                        {item.expiry_date ? new Date(item.expiry_date).toLocaleDateString() : ''}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Paper>
+                        </Box>
+                    )}
+
+                    {/* Sección de Datos Extraídos */}
+                    <Typography variant="h6" gutterBottom>Datos Extraídos</Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <TextField
                             label="Proveedor"
@@ -206,6 +310,7 @@ const DeliveryNoteUploader: React.FC = () => {
                                         items: [
                                             ...extractedData.items,
                                             {
+                                                product_code: '',
                                                 product_name: '',
                                                 quantity: 0,
                                                 unit: 'ud',
@@ -232,6 +337,22 @@ const DeliveryNoteUploader: React.FC = () => {
                                         }}
                                     >
                                         <Box sx={{ display: 'flex', gap: 2, mb: 1 }}>
+                                            <TextField
+                                                label="Código"
+                                                value={item.product_code}
+                                                onChange={(e) => {
+                                                    const newItems = [...extractedData.items];
+                                                    newItems[index] = {
+                                                        ...item,
+                                                        product_code: e.target.value
+                                                    };
+                                                    setExtractedData({
+                                                        ...extractedData,
+                                                        items: newItems
+                                                    });
+                                                }}
+                                                sx={{ width: 150 }}
+                                            />
                                             <TextField
                                                 label="Producto"
                                                 value={item.product_name}
