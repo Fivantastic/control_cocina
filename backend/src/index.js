@@ -9,6 +9,7 @@ import deliveryNoteRoutes from './routes/deliveryNoteRoutes.js';
 import stockMovementRoutes from './routes/stockMovements.js';
 import menuStockRoutes from './routes/menuStock.js';
 import deliveryNoteUploadRoutes from './routes/deliveryNoteUpload.js';
+import { initializeParsers } from './parsers/initParsers.js';
 
 const app = express();
 
@@ -69,6 +70,8 @@ app.use((err, req, res, next) => {
 // Probar la conexión a la base de datos antes de iniciar el servidor
 async function startServer() {
   try {
+    // Inicializar los parsers
+    initializeParsers();
     // Probar la conexión a la base de datos
     const isConnected = await testConnection();
     if (!isConnected) {
