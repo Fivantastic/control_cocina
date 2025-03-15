@@ -1,6 +1,7 @@
 import multer from 'multer';
 import { pool } from '../utils/db.js';
 import ocrService from '../services/ocrService.js';
+import mistralOcrService from '../services/mistralOcrService.js';
 
 // Configurar multer para usar almacenamiento en memoria
 const storage = multer.memoryStorage();
@@ -36,8 +37,15 @@ class DeliveryNoteUploadController {
                 });
             }
 
-            // Procesar el archivo usando OCR.space
-            const extractedData = await ocrService.processImage(req.file.buffer);
+            // Usar solo Mistral OCR temporalmente
+            console.log('Procesando imagen con Mistral OCR...');
+            const extractedData = await mistralOcrService.processImage(req.file.buffer);
+            
+            if (!extractedData) {
+                throw new Error('Mistral OCR falló al procesar la imagen');
+            }
+
+            console.log('Resultado Mistral OCR:', extractedData);
 
             res.json({
                 success: true,

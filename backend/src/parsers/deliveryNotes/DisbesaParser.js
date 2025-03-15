@@ -194,16 +194,37 @@ export class DisbesaParser extends BaseDeliveryNoteParser {
             
             // Buscar cantidad y precio
             let foundQuantity = false;
+            
+            // Primero buscar el precio tarifa en todas las líneas
+            console.log('\nBuscando precio tarifa en todas las líneas:');
+            for (const line of group) {
+                console.log('Analizando línea:', line);
+                // Buscar todos los números con 4 decimales
+                const matches = line.match(/\b\d+[.,]\d{4}\b/g);
+                if (matches) {
+                    console.log('Números con 4 decimales encontrados:', matches);
+                    // Tomar el primer precio
+                    const priceStr = matches[0].replace(',', '.');
+                    const price = parseFloat(priceStr);
+                    if (!isNaN(price)) {
+                        product.price = price;
+                        console.log(`Precio tarifa encontrado: ${price}`);
+                        break;
+                    }
+                } else {
+                    console.log('No se encontraron números con 4 decimales en esta línea');
+                }
+            }
+
+            // Luego buscar la cantidad en la línea principal
             for (let i = unitIndex + 1; i < parts.length; i++) {
-                const num = parseFloat(parts[i].replace(',', '.'));
-                if (!isNaN(num)) {
-                    if (parts[i].match(/\d+[.,]\d{4}/)) {
-                        product.price = num;
-                        console.log(`Precio encontrado: ${num}`);
-                    } else if (!foundQuantity && parts[i].match(/^\d+[.,]?\d{0,2}$/)) {
+                const part = parts[i].replace(',', '.');
+                if (!foundQuantity && part.match(/^\d+[.,]?\d{0,2}$/)) {
+                    const qty = parseFloat(part);
+                    if (!isNaN(qty)) {
                         foundQuantity = true;
-                        product.quantity = num;
-                        console.log(`Cantidad encontrada: ${num}`);
+                        product.quantity = qty;
+                        console.log(`Cantidad encontrada: ${qty}`);
                     }
                 }
             }
@@ -238,31 +259,28 @@ export class DisbesaParser extends BaseDeliveryNoteParser {
                 product.expiry_date = this.formatDate(cadMatch[1]);
             }
             
-            // Solo buscamos el precio en las líneas adicionales si no lo encontramos en la línea principal
+            // Procesar líneas adicionales para lote, caducidad y precio
             if (product.price === 0) {
-                // Primero intentar encontrar un precio con 4 decimales
-                const priceMatches = line.match(/\b\d+[.,]\d{4}\b/g);
-                if (priceMatches) {
-                    // Tomar el primer número con 4 decimales que encontremos
-                    const priceStr = priceMatches[0].replace(',', '.');
-                    const price = parseFloat(priceStr);
-                    if (!isNaN(price)) {
-                        product.price = price;
-                        console.log(`Precio encontrado para ${product.product_code} en línea adicional (4 decimales): ${price}`);
-                        continue;
+                console.log(`Buscando precio en línea adicional para ${product.product_code}:`, line);
+                
+                // Buscar todos los números en la línea
+                const allNumbers = line.match(/\b\d+[.,]\d{2,4}\b/g);
+                if (allNumbers) {
+                    console.log('Números encontrados:', allNumbers);
+                    
+                    // Primero intentar encontrar un precio con 4 decimales
+                    const price4Dec = allNumbers.find(num => num.match(/\d+[.,]\d{4}/));
+                    if (price4Dec) {
+                        const price = parseFloat(price4Dec.replace(',', '.'));
+                        if (!isNaN(price)) {
+                            product.price = price;
+                            console.log(`Precio tarifa encontrado: ${price}`);
+                        }
+                    } else {
+                        console.log('No se encontraron precios con 4 decimales');
                     }
-                }
-
-                // Si no encontramos precio con 4 decimales, buscar otros formatos
-                const otherPriceMatch = line.match(/\b\d+[.,]\d{2,4}\b/g);
-                if (otherPriceMatch) {
-                    // Tomar el primer número que encontremos
-                    const priceStr = otherPriceMatch[0].replace(',', '.');
-                    const price = parseFloat(priceStr);
-                    if (!isNaN(price) && price > 0) {
-                        product.price = price;
-                        console.log(`Precio encontrado para ${product.product_code} en línea adicional (otros formatos): ${price}`);
-                    }
+                } else {
+                    console.log('No se encontraron números en la línea');
                 }
             }
 
