@@ -9,3 +9,6 @@ export const ocrConfig = {
         isTable: true // Importante para detectar estructuras tabulares
     }
 };
+
+// Verificación de la clave API
+console.log('OCR.space API Key:', process.env.OCR_API_KEY ? 'Configurada' : 'No configurada');

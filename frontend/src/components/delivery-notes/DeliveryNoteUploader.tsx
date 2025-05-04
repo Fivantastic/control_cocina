@@ -74,6 +74,8 @@ const DeliveryNoteUploader: React.FC = () => {
     });
     const [showPreview, setShowPreview] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [newProducts, setNewProducts] = useState<any[]>([]);
+    const [showNewProductsDialog, setShowNewProductsDialog] = useState(false);
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
@@ -165,7 +167,13 @@ const DeliveryNoteUploader: React.FC = () => {
                     }
                 });
                 setShowPreview(false);
-                setSuccessMessage('Albarán guardado correctamente');
+                setSuccessMessage(data.message || 'Albarán guardado correctamente');
+                
+                // Verificar si hay productos nuevos
+                if (data.newProducts && data.newProducts.length > 0) {
+                    setNewProducts(data.newProducts);
+                    setShowNewProductsDialog(true);
+                }
             } else {
                 setError(data.error || 'Error al confirmar el albarán');
             }
@@ -489,6 +497,49 @@ const DeliveryNoteUploader: React.FC = () => {
                 onClose={() => setSuccessMessage(null)}
                 message={successMessage}
             />
+
+            {/* Diálogo para mostrar productos nuevos */}
+            <Dialog
+                open={showNewProductsDialog}
+                onClose={() => setShowNewProductsDialog(false)}
+                maxWidth="md"
+                fullWidth
+            >
+                <DialogTitle>Productos Nuevos Detectados</DialogTitle>
+                <DialogContent>
+                    <Typography variant="body1" paragraph>
+                        Se han detectado {newProducts.length} productos nuevos que no existían en el almacén:
+                    </Typography>
+                    <TableContainer component={Paper}>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Código</TableCell>
+                                    <TableCell>Nombre</TableCell>
+                                    <TableCell>Unidad</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {newProducts.map((product, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell>{product.code || 'N/A'}</TableCell>
+                                        <TableCell>{product.name}</TableCell>
+                                        <TableCell>{product.unit}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
+                        Estos productos han sido añadidos automáticamente al inventario.
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setShowNewProductsDialog(false)} color="primary">
+                        Aceptar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };

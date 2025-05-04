@@ -1,73 +1,124 @@
+// Servicio para procesar imágenes con la API de OCR de Mistral
 import { Mistral } from '@mistralai/mistralai';
+import * as dotenv from 'dotenv';
+import { StructuredDataExtractor } from './structuredDataExtractor.js';
 
-class MistralOCRService {
-    constructor() {
-        console.log('Inicializando MistralOCRService...');
-        console.log('USE_MISTRAL_OCR:', process.env.USE_MISTRAL_OCR);
-        
-        if (process.env.USE_MISTRAL_OCR === 'true') {
-            console.log('Mistral OCR está habilitado, inicializando cliente...');
-            this.client = new Mistral({
-                apiKey: process.env.MISTRAL_API_KEY
-            });
-            console.log('Cliente Mistral inicializado correctamente');
-        } else {
-            console.log('Mistral OCR está deshabilitado');
-        }
+dotenv.config();
+
+class MistralOcrService {
+  constructor() {
+    this.apiKey = process.env.MISTRAL_API_KEY;
+    if (!this.apiKey) {
+      console.error('Error: MISTRAL_API_KEY no está configurada en el archivo .env');
+      throw new Error('MISTRAL_API_KEY no configurada');
     }
 
-    async processImage(imageBuffer) {
-        if (process.env.USE_MISTRAL_OCR !== 'true') {
-            console.log('Mistral OCR está deshabilitado');
-            return null;
-        }
-        
-        try {
-            console.log('Preparando imagen para OCR...');
-            
-            if (!Buffer.isBuffer(imageBuffer)) {
-                throw new Error('Se esperaba un Buffer de imagen');
-            }
-            
-            // Convertir el buffer a base64
-            // Convertir el buffer a base64
-            const base64Image = imageBuffer.toString('base64');
-            
-            // Crear la URL de datos con el prefijo específico para JPEG
-            const dataUrl = `data:image/jpeg;base64,${base64Image}`;
-            
-            console.log('Procesando OCR...');
-            const ocrResponse = await this.client.ocr.process({
-                model: 'mistral-ocr-latest',
-                document: {
-                    type: 'image_url',
-                    image_url: dataUrl
-                },
-                include_image_base64: true
-            });
+    this.client = new Mistral({
+      apiKey: this.apiKey
+    });
 
-            console.log('Respuesta del OCR:', JSON.stringify(ocrResponse, null, 2));
-            
-            if (ocrResponse.pages && ocrResponse.pages.length > 0) {
-                const extractedText = ocrResponse.pages[0].markdown;
-                
-                return {
-                    text: extractedText,
-                    pageInfo: {
-                        dimensions: ocrResponse.pages[0].dimensions,
-                        index: ocrResponse.pages[0].index
-                    },
-                    usage: ocrResponse.usage_info
-                };
-            } else {
-                throw new Error('No se encontró texto en la imagen');
-            }
-            
-        } catch (error) {
-            console.error('Error al procesar la imagen con Mistral OCR:', error);
-            throw error;
-        }
+    this.dataExtractor = new StructuredDataExtractor();
+    console.log('Servicio MistralOCR inicializado correctamente');
+  }
+
+  /**
+   * Convierte un buffer de imagen a base64
+   * @param {Buffer} imageBuffer - Buffer de la imagen
+   * @returns {string} - String en formato base64
+   */
+  imageBufferToBase64(imageBuffer) {
+    return imageBuffer.toString('base64');
+  }
+
+  /**
+   * Procesa una imagen utilizando la API de OCR de Mistral
+   * @param {Buffer} imageBuffer - Buffer de la imagen a procesar
+   * @returns {Promise<Object>} - Datos estructurados extraídos de la imagen
+   */
+  async processImage(imageBuffer) {
+    try {
+      console.log('Procesando imagen con Mistral OCR...');
+      
+      try {
+        // Intentar usar el SDK de Mistral para OCR
+        const extractedData = await this.extractTextWithOCR(imageBuffer);
+        console.log('Texto extraído con éxito usando OCR de Mistral');
+        return extractedData;
+      } catch (error) {
+        console.error('Error al extraer texto con OCR de Mistral:', error);
+        throw error;
+      }
+    } catch (error) {
+      console.error('Error al procesar la imagen:', error);
+      throw error;
     }
+  }
+  
+  /**
+   * Extrae texto de una imagen utilizando la API específica de OCR de Mistral
+   * @param {Buffer} imageBuffer - Buffer de la imagen
+   * @returns {Promise<Object>} - Datos estructurados extraídos de la imagen
+   */
+  async extractTextWithOCR(imageBuffer) {
+    console.log('Extrayendo texto con la API de OCR de Mistral...');
+    
+    try {
+      // Convertir la imagen a base64
+      const base64Image = this.imageBufferToBase64(imageBuffer);
+      
+      // Imprimir los primeros 100 caracteres del base64 para verificar
+      console.log('Primeros 100 caracteres del base64:', base64Image.substring(0, 100) + '...');
+      
+      // Usar el SDK de Mistral para OCR con el formato correcto según la documentación oficial
+      console.log('Enviando solicitud a la API de OCR...');
+      const ocrResponse = await this.client.ocr.process({
+        model: "mistral-ocr-latest",
+        document: {
+          type: "image_url",
+          imageUrl: "data:image/jpeg;base64," + base64Image
+        },
+        includeImageBase64: true
+      });
+      
+      console.log('Respuesta de OCR recibida:', JSON.stringify(ocrResponse).substring(0, 200) + '...');
+      
+      // Extraer el texto del resultado de OCR
+      let extractedText = '';
+      
+      // Intentar obtener el texto de diferentes formas según la estructura de respuesta
+      if (ocrResponse.text) {
+        extractedText = ocrResponse.text;
+        console.log('Texto extraído del campo text');
+      } else if (ocrResponse.pages && ocrResponse.pages.length > 0) {
+        extractedText = ocrResponse.pages.map(page => page.markdown || page.text || '').join('\n');
+        console.log('Texto extraído del campo pages.markdown');
+      } else if (ocrResponse.content) {
+        extractedText = ocrResponse.content;
+        console.log('Texto extraído del campo content');
+      } else {
+        console.log('Estructura de la respuesta OCR:', JSON.stringify(ocrResponse, null, 2));
+      }
+      
+      console.log('Texto extraído con OCR:', extractedText.substring(0, 200) + '...');
+      
+      if (!extractedText || extractedText.trim() === '') {
+        console.warn('No se encontró texto en la imagen');
+        return {
+          proveedor: '',
+          fecha: '',
+          numeroAlbaran: '',
+          productos: []
+        };
+      }
+      
+      // Extraer datos estructurados del texto usando el extractor de datos estructurados
+      return this.dataExtractor.extractStructuredData(extractedText);
+    } catch (error) {
+      console.error('Error al extraer texto con OCR de Mistral:', error);
+      throw error;
+    }
+  }
 }
 
-export default new MistralOCRService();
+// Exportar una instancia del servicio
+export const mistralOcrService = new MistralOcrService();

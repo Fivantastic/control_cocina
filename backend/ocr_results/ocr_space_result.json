@@ -1,0 +1,2660 @@
+{
+  "ParsedResults": [
+    {
+      "TextOverlay": {
+        "Lines": [
+          {
+            "LineText": "LUGAR DE ENTREGA :",
+            "Words": [
+              {
+                "WordText": "LUGAR",
+                "Left": 398,
+                "Top": 169,
+                "Height": 16,
+                "Width": 58
+              },
+              {
+                "WordText": "DE",
+                "Left": 462,
+                "Top": 174,
+                "Height": 12,
+                "Width": 21
+              },
+              {
+                "WordText": "ENTREGA",
+                "Left": 488,
+                "Top": 171,
+                "Height": 14,
+                "Width": 76
+              },
+              {
+                "WordText": ":",
+                "Left": 570,
+                "Top": 174,
+                "Height": 9,
+                "Width": 3
+              }
+            ],
+            "MaxHeight": 16,
+            "MinTop": 169
+          },
+          {
+            "LineText": "EI Mismo",
+            "Words": [
+              {
+                "WordText": "EI",
+                "Left": 403,
+                "Top": 199,
+                "Height": 13,
+                "Width": 15
+              },
+              {
+                "WordText": "Mismo",
+                "Left": 423,
+                "Top": 201,
+                "Height": 15,
+                "Width": 52
+              }
+            ],
+            "MaxHeight": 15,
+            "MinTop": 199
+          },
+          {
+            "LineText": "CALIDAD",
+            "Words": [
+              {
+                "WordText": "CALIDAD",
+                "Left": 135,
+                "Top": 201,
+                "Height": 22,
+                "Width": 66
+              }
+            ],
+            "MaxHeight": 22,
+            "MinTop": 201
+          },
+          {
+            "LineText": "DISBESA",
+            "Words": [
+              {
+                "WordText": "DISBESA",
+                "Left": 237,
+                "Top": 228,
+                "Height": 30,
+                "Width": 132
+              }
+            ],
+            "MaxHeight": 30,
+            "MinTop": 228
+          },
+          {
+            "LineText": "Drinks sol, S.L.",
+            "Words": [
+              {
+                "WordText": "Drinks",
+                "Left": 142,
+                "Top": 313,
+                "Height": 15,
+                "Width": 56
+              },
+              {
+                "WordText": "sol,",
+                "Left": 204,
+                "Top": 316,
+                "Height": 17,
+                "Width": 32
+              },
+              {
+                "WordText": "S.L.",
+                "Left": 242,
+                "Top": 319,
+                "Height": 14,
+                "Width": 32
+              }
+            ],
+            "MaxHeight": 17,
+            "MinTop": 313
+          },
+          {
+            "LineText": "CLIENTE",
+            "Words": [
+              {
+                "WordText": "CLIENTE",
+                "Left": 806,
+                "Top": 201,
+                "Height": 14,
+                "Width": 66
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 201
+          },
+          {
+            "LineText": "ALBARAN .",
+            "Words": [
+              {
+                "WordText": "ALBARAN",
+                "Left": 806,
+                "Top": 235,
+                "Height": 14,
+                "Width": 75
+              },
+              {
+                "WordText": ".",
+                "Left": 892,
+                "Top": 244,
+                "Height": 3,
+                "Width": 3
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 235
+          },
+          {
+            "LineText": "FECHA",
+            "Words": [
+              {
+                "WordText": "FECHA",
+                "Left": 807,
+                "Top": 272,
+                "Height": 13,
+                "Width": 53
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 272
+          },
+          {
+            "LineText": "299448",
+            "Words": [
+              {
+                "WordText": "299448",
+                "Left": 953,
+                "Top": 196,
+                "Height": 13,
+                "Width": 53
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 196
+          },
+          {
+            "LineText": "177494",
+            "Words": [
+              {
+                "WordText": "177494",
+                "Left": 954,
+                "Top": 231,
+                "Height": 14,
+                "Width": 53
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 231
+          },
+          {
+            "LineText": "30/12/2024",
+            "Words": [
+              {
+                "WordText": "30/12/2024",
+                "Left": 928,
+                "Top": 267,
+                "Height": 14,
+                "Width": 80
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 267
+          },
+          {
+            "LineText": "Tel. 952 2312% Fax 952 237703 • CL caleta de Velez (Pol. Santa • 29004 Malaga • MALAGA",
+            "Words": [
+              {
+                "WordText": "Tel.",
+                "Left": 141,
+                "Top": 334,
+                "Height": 12,
+                "Width": 24
+              },
+              {
+                "WordText": "952",
+                "Left": 170,
+                "Top": 336,
+                "Height": 11,
+                "Width": 24
+              },
+              {
+                "WordText": "2312%",
+                "Left": 198,
+                "Top": 337,
+                "Height": 13,
+                "Width": 49
+              },
+              {
+                "WordText": "Fax",
+                "Left": 251,
+                "Top": 340,
+                "Height": 11,
+                "Width": 26
+              },
+              {
+                "WordText": "952",
+                "Left": 283,
+                "Top": 342,
+                "Height": 11,
+                "Width": 23
+              },
+              {
+                "WordText": "237703",
+                "Left": 310,
+                "Top": 343,
+                "Height": 12,
+                "Width": 47
+              },
+              {
+                "WordText": "•",
+                "Left": 362,
+                "Top": 346,
+                "Height": 4,
+                "Width": 4
+              },
+              {
+                "WordText": "CL",
+                "Left": 370,
+                "Top": 347,
+                "Height": 10,
+                "Width": 18
+              },
+              {
+                "WordText": "caleta",
+                "Left": 392,
+                "Top": 348,
+                "Height": 11,
+                "Width": 40
+              },
+              {
+                "WordText": "de",
+                "Left": 436,
+                "Top": 350,
+                "Height": 10,
+                "Width": 15
+              },
+              {
+                "WordText": "Velez",
+                "Left": 454,
+                "Top": 350,
+                "Height": 10,
+                "Width": 32
+              },
+              {
+                "WordText": "(Pol.",
+                "Left": 490,
+                "Top": 349,
+                "Height": 12,
+                "Width": 25
+              },
+              {
+                "WordText": "Santa",
+                "Left": 520,
+                "Top": 349,
+                "Height": 10,
+                "Width": 33
+              },
+              {
+                "WordText": "•",
+                "Left": 623,
+                "Top": 348,
+                "Height": 4,
+                "Width": 5
+              },
+              {
+                "WordText": "29004",
+                "Left": 632,
+                "Top": 347,
+                "Height": 10,
+                "Width": 35
+              },
+              {
+                "WordText": "Malaga",
+                "Left": 671,
+                "Top": 347,
+                "Height": 12,
+                "Width": 42
+              },
+              {
+                "WordText": "•",
+                "Left": 717,
+                "Top": 348,
+                "Height": 3,
+                "Width": 5
+              },
+              {
+                "WordText": "MALAGA",
+                "Left": 726,
+                "Top": 347,
+                "Height": 11,
+                "Width": 53
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 334
+          },
+          {
+            "LineText": "N.O.P. Repartidor ! N• Carga r Vendedor Cobrador",
+            "Words": [
+              {
+                "WordText": "N.O.P.",
+                "Left": 166,
+                "Top": 357,
+                "Height": 13,
+                "Width": 43
+              },
+              {
+                "WordText": "Repartidor",
+                "Left": 231,
+                "Top": 361,
+                "Height": 13,
+                "Width": 72
+              },
+              {
+                "WordText": "!",
+                "Left": 314,
+                "Top": 368,
+                "Height": 13,
+                "Width": 2
+              },
+              {
+                "WordText": "N•",
+                "Left": 319,
+                "Top": 365,
+                "Height": 10,
+                "Width": 15
+              },
+              {
+                "WordText": "Carga",
+                "Left": 338,
+                "Top": 366,
+                "Height": 14,
+                "Width": 39
+              },
+              {
+                "WordText": "r",
+                "Left": 385,
+                "Top": 370,
+                "Height": 7,
+                "Width": 2
+              },
+              {
+                "WordText": "Vendedor",
+                "Left": 393,
+                "Top": 368,
+                "Height": 13,
+                "Width": 63
+              },
+              {
+                "WordText": "Cobrador",
+                "Left": 476,
+                "Top": 370,
+                "Height": 10,
+                "Width": 58
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 357
+          },
+          {
+            "LineText": "RAZÓN SOCIAL :",
+            "Words": [
+              {
+                "WordText": "RAZÓN",
+                "Left": 1036,
+                "Top": 160,
+                "Height": 16,
+                "Width": 56
+              },
+              {
+                "WordText": "SOCIAL",
+                "Left": 1098,
+                "Top": 161,
+                "Height": 13,
+                "Width": 61
+              },
+              {
+                "WordText": ":",
+                "Left": 1164,
+                "Top": 163,
+                "Height": 9,
+                "Width": 3
+              }
+            ],
+            "MaxHeight": 16,
+            "MinTop": 160
+          },
+          {
+            "LineText": "SODEXO IBERIA SA",
+            "Words": [
+              {
+                "WordText": "SODEXO",
+                "Left": 1040,
+                "Top": 193,
+                "Height": 14,
+                "Width": 68
+              },
+              {
+                "WordText": "IBERIA",
+                "Left": 1113,
+                "Top": 192,
+                "Height": 13,
+                "Width": 53
+              },
+              {
+                "WordText": "SA",
+                "Left": 1172,
+                "Top": 191,
+                "Height": 12,
+                "Width": 20
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 191
+          },
+          {
+            "LineText": "CLINICA EL SERANIL",
+            "Words": [
+              {
+                "WordText": "CLINICA",
+                "Left": 1040,
+                "Top": 214,
+                "Height": 13,
+                "Width": 63
+              },
+              {
+                "WordText": "EL",
+                "Left": 1108,
+                "Top": 213,
+                "Height": 13,
+                "Width": 19
+              },
+              {
+                "WordText": "SERANIL",
+                "Left": 1132,
+                "Top": 212,
+                "Height": 13,
+                "Width": 68
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 212
+          },
+          {
+            "LineText": "CR ALMERIA - KM,261",
+            "Words": [
+              {
+                "WordText": "CR",
+                "Left": 1040,
+                "Top": 236,
+                "Height": 13,
+                "Width": 23
+              },
+              {
+                "WordText": "ALMERIA",
+                "Left": 1068,
+                "Top": 234,
+                "Height": 14,
+                "Width": 71
+              },
+              {
+                "WordText": "-",
+                "Left": 1143,
+                "Top": 241,
+                "Height": 2,
+                "Width": 6
+              },
+              {
+                "WordText": "KM,261",
+                "Left": 1153,
+                "Top": 233,
+                "Height": 15,
+                "Width": 53
+              }
+            ],
+            "MaxHeight": 15,
+            "MinTop": 233
+          },
+          {
+            "LineText": "29790 Benajarafe",
+            "Words": [
+              {
+                "WordText": "29790",
+                "Left": 1041,
+                "Top": 257,
+                "Height": 13,
+                "Width": 44
+              },
+              {
+                "WordText": "Benajarafe",
+                "Left": 1091,
+                "Top": 255,
+                "Height": 17,
+                "Width": 77
+              }
+            ],
+            "MaxHeight": 17,
+            "MinTop": 255
+          },
+          {
+            "LineText": "MALAGA",
+            "Words": [
+              {
+                "WordText": "MALAGA",
+                "Left": 1042,
+                "Top": 279,
+                "Height": 13,
+                "Width": 66
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 279
+          },
+          {
+            "LineText": "Ident ticket F.F. A",
+            "Words": [
+              {
+                "WordText": "Ident",
+                "Left": 1008,
+                "Top": 364,
+                "Height": 11,
+                "Width": 31
+              },
+              {
+                "WordText": "ticket",
+                "Left": 1042,
+                "Top": 364,
+                "Height": 10,
+                "Width": 35
+              },
+              {
+                "WordText": "F.F.",
+                "Left": 1114,
+                "Top": 362,
+                "Height": 11,
+                "Width": 22
+              },
+              {
+                "WordText": "A",
+                "Left": 1150,
+                "Top": 362,
+                "Height": 10,
+                "Width": 10
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 362
+          },
+          {
+            "LineText": "Servido por cuenta de:",
+            "Words": [
+              {
+                "WordText": "Servido",
+                "Left": 624,
+                "Top": 368,
+                "Height": 9,
+                "Width": 48
+              },
+              {
+                "WordText": "por",
+                "Left": 676,
+                "Top": 370,
+                "Height": 9,
+                "Width": 20
+              },
+              {
+                "WordText": "cuenta",
+                "Left": 700,
+                "Top": 369,
+                "Height": 8,
+                "Width": 41
+              },
+              {
+                "WordText": "de:",
+                "Left": 745,
+                "Top": 368,
+                "Height": 10,
+                "Width": 19
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 368
+          },
+          {
+            "LineText": "Bebidas y Marketing S L (DFS)",
+            "Words": [
+              {
+                "WordText": "Bebidas",
+                "Left": 619,
+                "Top": 390,
+                "Height": 10,
+                "Width": 46
+              },
+              {
+                "WordText": "y",
+                "Left": 669,
+                "Top": 392,
+                "Height": 10,
+                "Width": 6
+              },
+              {
+                "WordText": "Marketing",
+                "Left": 679,
+                "Top": 390,
+                "Height": 12,
+                "Width": 57
+              },
+              {
+                "WordText": "S",
+                "Left": 740,
+                "Top": 390,
+                "Height": 10,
+                "Width": 8
+              },
+              {
+                "WordText": "L",
+                "Left": 752,
+                "Top": 390,
+                "Height": 10,
+                "Width": 7
+              },
+              {
+                "WordText": "(DFS)",
+                "Left": 763,
+                "Top": 391,
+                "Height": 12,
+                "Width": 34
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 390
+          },
+          {
+            "LineText": "S/ Referencia",
+            "Words": [
+              {
+                "WordText": "S/",
+                "Left": 881,
+                "Top": 368,
+                "Height": 10,
+                "Width": 12
+              },
+              {
+                "WordText": "Referencia",
+                "Left": 894,
+                "Top": 366,
+                "Height": 11,
+                "Width": 65
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 366
+          },
+          {
+            "LineText": "7109595592",
+            "Words": [
+              {
+                "WordText": "7109595592",
+                "Left": 888,
+                "Top": 388,
+                "Height": 12,
+                "Width": 72
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 388
+          },
+          {
+            "LineText": "A08427296",
+            "Words": [
+              {
+                "WordText": "A08427296",
+                "Left": 1325,
+                "Top": 169,
+                "Height": 11,
+                "Width": 61
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 169
+          },
+          {
+            "LineText": "Pag. : 1 de 2",
+            "Words": [
+              {
+                "WordText": "Pag.",
+                "Left": 1287,
+                "Top": 329,
+                "Height": 16,
+                "Width": 31
+              },
+              {
+                "WordText": ":",
+                "Left": 1323,
+                "Top": 333,
+                "Height": 9,
+                "Width": 4
+              },
+              {
+                "WordText": "1",
+                "Left": 1361,
+                "Top": 330,
+                "Height": 12,
+                "Width": 5
+              },
+              {
+                "WordText": "de",
+                "Left": 1375,
+                "Top": 330,
+                "Height": 12,
+                "Width": 17
+              },
+              {
+                "WordText": "2",
+                "Left": 1400,
+                "Top": 330,
+                "Height": 12,
+                "Width": 8
+              }
+            ],
+            "MaxHeight": 16,
+            "MinTop": 329
+          },
+          {
+            "LineText": "Forrna de pago",
+            "Words": [
+              {
+                "WordText": "Forrna",
+                "Left": 1255,
+                "Top": 361,
+                "Height": 11,
+                "Width": 37
+              },
+              {
+                "WordText": "de",
+                "Left": 1295,
+                "Top": 362,
+                "Height": 10,
+                "Width": 14
+              },
+              {
+                "WordText": "pago",
+                "Left": 1313,
+                "Top": 365,
+                "Height": 10,
+                "Width": 29
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 361
+          },
+          {
+            "LineText": "Terceros",
+            "Words": [
+              {
+                "WordText": "Terceros",
+                "Left": 1291,
+                "Top": 385,
+                "Height": 10,
+                "Width": 50
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 385
+          },
+          {
+            "LineText": "24439",
+            "Words": [
+              {
+                "WordText": "24439",
+                "Left": 164,
+                "Top": 381,
+                "Height": 12,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 381
+          },
+          {
+            "LineText": "1292",
+            "Words": [
+              {
+                "WordText": "1292",
+                "Left": 260,
+                "Top": 385,
+                "Height": 11,
+                "Width": 31
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 385
+          },
+          {
+            "LineText": "Observaciones:",
+            "Words": [
+              {
+                "WordText": "Observaciones:",
+                "Left": 147,
+                "Top": 400,
+                "Height": 15,
+                "Width": 109
+              }
+            ],
+            "MaxHeight": 15,
+            "MinTop": 400
+          },
+          {
+            "LineText": "S,'CTE 61339",
+            "Words": [
+              {
+                "WordText": "S,'CTE",
+                "Left": 158,
+                "Top": 433,
+                "Height": 12,
+                "Width": 44
+              },
+              {
+                "WordText": "61339",
+                "Left": 206,
+                "Top": 435,
+                "Height": 12,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 433
+          },
+          {
+            "LineText": "1 11",
+            "Words": [
+              {
+                "WordText": "1",
+                "Left": 341,
+                "Top": 389,
+                "Height": 10,
+                "Width": 5
+              },
+              {
+                "WordText": "11",
+                "Left": 352,
+                "Top": 389,
+                "Height": 10,
+                "Width": 14
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 389
+          },
+          {
+            "LineText": "Descripción",
+            "Words": [
+              {
+                "WordText": "Descripción",
+                "Left": 415,
+                "Top": 483,
+                "Height": 13,
+                "Width": 75
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 483
+          },
+          {
+            "LineText": "Desnatada Camçesina Br. 1 L_x6",
+            "Words": [
+              {
+                "WordText": "Desnatada",
+                "Left": 360,
+                "Top": 513,
+                "Height": 10,
+                "Width": 59
+              },
+              {
+                "WordText": "Camçesina",
+                "Left": 423,
+                "Top": 514,
+                "Height": 12,
+                "Width": 57
+              },
+              {
+                "WordText": "Br.",
+                "Left": 484,
+                "Top": 514,
+                "Height": 9,
+                "Width": 13
+              },
+              {
+                "WordText": "1",
+                "Left": 499,
+                "Top": 514,
+                "Height": 9,
+                "Width": 3
+              },
+              {
+                "WordText": "L_x6",
+                "Left": 504,
+                "Top": 514,
+                "Height": 9,
+                "Width": 17
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 513
+          },
+          {
+            "LineText": "un': 19 cad: 27'04,'2S 20241129",
+            "Words": [
+              {
+                "WordText": "un':",
+                "Left": 331,
+                "Top": 528,
+                "Height": 9,
+                "Width": 21
+              },
+              {
+                "WordText": "19",
+                "Left": 368,
+                "Top": 529,
+                "Height": 8,
+                "Width": 12
+              },
+              {
+                "WordText": "cad:",
+                "Left": 384,
+                "Top": 528,
+                "Height": 10,
+                "Width": 24
+              },
+              {
+                "WordText": "27'04,'2S",
+                "Left": 412,
+                "Top": 529,
+                "Height": 9,
+                "Width": 46
+              },
+              {
+                "WordText": "20241129",
+                "Left": 489,
+                "Top": 528,
+                "Height": 9,
+                "Width": 49
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 528
+          },
+          {
+            "LineText": "Leche Ent8-a Campesina Br_ I L",
+            "Words": [
+              {
+                "WordText": "Leche",
+                "Left": 323,
+                "Top": 542,
+                "Height": 10,
+                "Width": 33
+              },
+              {
+                "WordText": "Ent8-a",
+                "Left": 360,
+                "Top": 543,
+                "Height": 9,
+                "Width": 35
+              },
+              {
+                "WordText": "Campesina",
+                "Left": 399,
+                "Top": 543,
+                "Height": 12,
+                "Width": 60
+              },
+              {
+                "WordText": "Br_",
+                "Left": 462,
+                "Top": 544,
+                "Height": 9,
+                "Width": 14
+              },
+              {
+                "WordText": "I",
+                "Left": 477,
+                "Top": 544,
+                "Height": 8,
+                "Width": 4
+              },
+              {
+                "WordText": "L",
+                "Left": 483,
+                "Top": 544,
+                "Height": 8,
+                "Width": 6
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 542
+          },
+          {
+            "LineText": "Nectar Piña Disfruta DSimon , 5Lx6",
+            "Words": [
+              {
+                "WordText": "Nectar",
+                "Left": 322,
+                "Top": 573,
+                "Height": 9,
+                "Width": 37
+              },
+              {
+                "WordText": "Piña",
+                "Left": 362,
+                "Top": 573,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "Disfruta",
+                "Left": 390,
+                "Top": 573,
+                "Height": 9,
+                "Width": 41
+              },
+              {
+                "WordText": "DSimon",
+                "Left": 435,
+                "Top": 573,
+                "Height": 9,
+                "Width": 43
+              },
+              {
+                "WordText": ",",
+                "Left": 489,
+                "Top": 580,
+                "Height": 2,
+                "Width": 1
+              },
+              {
+                "WordText": "5Lx6",
+                "Left": 491,
+                "Top": 573,
+                "Height": 9,
+                "Width": 24
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 573
+          },
+          {
+            "LineText": "Uni: 2 cadi 09101'25 Lote 20240415",
+            "Words": [
+              {
+                "WordText": "Uni:",
+                "Left": 329,
+                "Top": 588,
+                "Height": 9,
+                "Width": 22
+              },
+              {
+                "WordText": "2",
+                "Left": 369,
+                "Top": 588,
+                "Height": 9,
+                "Width": 6
+              },
+              {
+                "WordText": "cadi",
+                "Left": 379,
+                "Top": 588,
+                "Height": 9,
+                "Width": 25
+              },
+              {
+                "WordText": "09101'25",
+                "Left": 408,
+                "Top": 588,
+                "Height": 9,
+                "Width": 46
+              },
+              {
+                "WordText": "Lote",
+                "Left": 457,
+                "Top": 588,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "20240415",
+                "Left": 485,
+                "Top": 587,
+                "Height": 10,
+                "Width": 49
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 587
+          },
+          {
+            "LineText": "Nectar D. Simon .SLxS",
+            "Words": [
+              {
+                "WordText": "Nectar",
+                "Left": 321,
+                "Top": 603,
+                "Height": 9,
+                "Width": 37
+              },
+              {
+                "WordText": "D.",
+                "Left": 436,
+                "Top": 603,
+                "Height": 9,
+                "Width": 10
+              },
+              {
+                "WordText": "Simon",
+                "Left": 447,
+                "Top": 603,
+                "Height": 9,
+                "Width": 32
+              },
+              {
+                "WordText": ".SLxS",
+                "Left": 489,
+                "Top": 603,
+                "Height": 9,
+                "Width": 27
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 603
+          },
+          {
+            "LineText": "uní: Cad: 09/12'24 Lote- 20240315",
+            "Words": [
+              {
+                "WordText": "uní:",
+                "Left": 329,
+                "Top": 618,
+                "Height": 10,
+                "Width": 21
+              },
+              {
+                "WordText": "Cad:",
+                "Left": 378,
+                "Top": 618,
+                "Height": 10,
+                "Width": 25
+              },
+              {
+                "WordText": "09/12'24",
+                "Left": 407,
+                "Top": 618,
+                "Height": 9,
+                "Width": 46
+              },
+              {
+                "WordText": "Lote-",
+                "Left": 457,
+                "Top": 618,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "20240315",
+                "Left": 484,
+                "Top": 617,
+                "Height": 9,
+                "Width": 50
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 617
+          },
+          {
+            "LineText": "Cacao Sduble Nesquik 3Kx1",
+            "Words": [
+              {
+                "WordText": "Cacao",
+                "Left": 320,
+                "Top": 633,
+                "Height": 10,
+                "Width": 36
+              },
+              {
+                "WordText": "Sduble",
+                "Left": 360,
+                "Top": 633,
+                "Height": 10,
+                "Width": 40
+              },
+              {
+                "WordText": "Nesquik",
+                "Left": 404,
+                "Top": 633,
+                "Height": 11,
+                "Width": 44
+              },
+              {
+                "WordText": "3Kx1",
+                "Left": 451,
+                "Top": 633,
+                "Height": 9,
+                "Width": 24
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 633
+          },
+          {
+            "LineText": "Un': 1 cad: 01/02'26 Lote: 422101291L",
+            "Words": [
+              {
+                "WordText": "Un':",
+                "Left": 328,
+                "Top": 649,
+                "Height": 9,
+                "Width": 21
+              },
+              {
+                "WordText": "1",
+                "Left": 368,
+                "Top": 649,
+                "Height": 9,
+                "Width": 4
+              },
+              {
+                "WordText": "cad:",
+                "Left": 377,
+                "Top": 648,
+                "Height": 10,
+                "Width": 25
+              },
+              {
+                "WordText": "01/02'26",
+                "Left": 406,
+                "Top": 648,
+                "Height": 9,
+                "Width": 47
+              },
+              {
+                "WordText": "Lote:",
+                "Left": 456,
+                "Top": 648,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "422101291L",
+                "Left": 483,
+                "Top": 647,
+                "Height": 10,
+                "Width": 64
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 647
+          },
+          {
+            "LineText": "Fideua Bondore SK XI",
+            "Words": [
+              {
+                "WordText": "Fideua",
+                "Left": 319,
+                "Top": 664,
+                "Height": 9,
+                "Width": 38
+              },
+              {
+                "WordText": "Bondore",
+                "Left": 361,
+                "Top": 663,
+                "Height": 10,
+                "Width": 46
+              },
+              {
+                "WordText": "SK",
+                "Left": 410,
+                "Top": 663,
+                "Height": 9,
+                "Width": 15
+              },
+              {
+                "WordText": "XI",
+                "Left": 429,
+                "Top": 664,
+                "Height": 8,
+                "Width": 10
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 663
+          },
+          {
+            "LineText": "Uni: 1 cad: 01/08,27 Lote; 542350",
+            "Words": [
+              {
+                "WordText": "Uni:",
+                "Left": 327,
+                "Top": 679,
+                "Height": 9,
+                "Width": 21
+              },
+              {
+                "WordText": "1",
+                "Left": 366,
+                "Top": 679,
+                "Height": 9,
+                "Width": 5
+              },
+              {
+                "WordText": "cad:",
+                "Left": 376,
+                "Top": 679,
+                "Height": 9,
+                "Width": 26
+              },
+              {
+                "WordText": "01/08,27",
+                "Left": 406,
+                "Top": 678,
+                "Height": 9,
+                "Width": 46
+              },
+              {
+                "WordText": "Lote;",
+                "Left": 456,
+                "Top": 678,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "542350",
+                "Left": 483,
+                "Top": 677,
+                "Height": 10,
+                "Width": 38
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 677
+          },
+          {
+            "LineText": "Fideos Bondore SK XI",
+            "Words": [
+              {
+                "WordText": "Fideos",
+                "Left": 318,
+                "Top": 694,
+                "Height": 10,
+                "Width": 37
+              },
+              {
+                "WordText": "Bondore",
+                "Left": 383,
+                "Top": 694,
+                "Height": 9,
+                "Width": 46
+              },
+              {
+                "WordText": "SK",
+                "Left": 432,
+                "Top": 693,
+                "Height": 9,
+                "Width": 15
+              },
+              {
+                "WordText": "XI",
+                "Left": 450,
+                "Top": 693,
+                "Height": 9,
+                "Width": 11
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 693
+          },
+          {
+            "LineText": "urú: 1 cad: 16/09,27 Lote 54300",
+            "Words": [
+              {
+                "WordText": "urú:",
+                "Left": 326,
+                "Top": 710,
+                "Height": 9,
+                "Width": 21
+              },
+              {
+                "WordText": "1",
+                "Left": 366,
+                "Top": 709,
+                "Height": 9,
+                "Width": 4
+              },
+              {
+                "WordText": "cad:",
+                "Left": 376,
+                "Top": 709,
+                "Height": 9,
+                "Width": 25
+              },
+              {
+                "WordText": "16/09,27",
+                "Left": 406,
+                "Top": 708,
+                "Height": 10,
+                "Width": 45
+              },
+              {
+                "WordText": "Lote",
+                "Left": 455,
+                "Top": 708,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "54300",
+                "Left": 483,
+                "Top": 707,
+                "Height": 10,
+                "Width": 38
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 707
+          },
+          {
+            "LineText": "Aceite Girasol Carrion Pet 51x3",
+            "Words": [
+              {
+                "WordText": "Aceite",
+                "Left": 316,
+                "Top": 725,
+                "Height": 9,
+                "Width": 36
+              },
+              {
+                "WordText": "Girasol",
+                "Left": 356,
+                "Top": 724,
+                "Height": 10,
+                "Width": 39
+              },
+              {
+                "WordText": "Carrion",
+                "Left": 398,
+                "Top": 723,
+                "Height": 10,
+                "Width": 40
+              },
+              {
+                "WordText": "Pet",
+                "Left": 442,
+                "Top": 723,
+                "Height": 9,
+                "Width": 17
+              },
+              {
+                "WordText": "51x3",
+                "Left": 462,
+                "Top": 723,
+                "Height": 9,
+                "Width": 24
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 723
+          },
+          {
+            "LineText": "un': 1 Cad: N596",
+            "Words": [
+              {
+                "WordText": "un':",
+                "Left": 325,
+                "Top": 740,
+                "Height": 10,
+                "Width": 21
+              },
+              {
+                "WordText": "1",
+                "Left": 365,
+                "Top": 740,
+                "Height": 9,
+                "Width": 5
+              },
+              {
+                "WordText": "Cad:",
+                "Left": 375,
+                "Top": 739,
+                "Height": 10,
+                "Width": 25
+              },
+              {
+                "WordText": "N596",
+                "Left": 483,
+                "Top": 738,
+                "Height": 9,
+                "Width": 27
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 738
+          },
+          {
+            "LineText": "Aceite Orujo Carrion pet SL x3",
+            "Words": [
+              {
+                "WordText": "Aceite",
+                "Left": 315,
+                "Top": 756,
+                "Height": 9,
+                "Width": 36
+              },
+              {
+                "WordText": "Orujo",
+                "Left": 355,
+                "Top": 755,
+                "Height": 11,
+                "Width": 30
+              },
+              {
+                "WordText": "Carrion",
+                "Left": 389,
+                "Top": 754,
+                "Height": 10,
+                "Width": 39
+              },
+              {
+                "WordText": "pet",
+                "Left": 432,
+                "Top": 754,
+                "Height": 9,
+                "Width": 18
+              },
+              {
+                "WordText": "SL",
+                "Left": 453,
+                "Top": 753,
+                "Height": 9,
+                "Width": 13
+              },
+              {
+                "WordText": "x3",
+                "Left": 469,
+                "Top": 753,
+                "Height": 9,
+                "Width": 12
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 753
+          },
+          {
+            "LineText": "un': 1 cad: 01/10t25 Lote: M598",
+            "Words": [
+              {
+                "WordText": "un':",
+                "Left": 324,
+                "Top": 771,
+                "Height": 10,
+                "Width": 21
+              },
+              {
+                "WordText": "1",
+                "Left": 365,
+                "Top": 771,
+                "Height": 8,
+                "Width": 3
+              },
+              {
+                "WordText": "cad:",
+                "Left": 374,
+                "Top": 770,
+                "Height": 9,
+                "Width": 25
+              },
+              {
+                "WordText": "01/10t25",
+                "Left": 404,
+                "Top": 768,
+                "Height": 10,
+                "Width": 46
+              },
+              {
+                "WordText": "Lote:",
+                "Left": 454,
+                "Top": 768,
+                "Height": 9,
+                "Width": 24
+              },
+              {
+                "WordText": "M598",
+                "Left": 482,
+                "Top": 768,
+                "Height": 9,
+                "Width": 28
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 768
+          },
+          {
+            "LineText": "Mayonesa Profesional Heinz Sk x 1",
+            "Words": [
+              {
+                "WordText": "Mayonesa",
+                "Left": 315,
+                "Top": 787,
+                "Height": 11,
+                "Width": 57
+              },
+              {
+                "WordText": "Profesional",
+                "Left": 376,
+                "Top": 784,
+                "Height": 11,
+                "Width": 61
+              },
+              {
+                "WordText": "Heinz",
+                "Left": 441,
+                "Top": 784,
+                "Height": 9,
+                "Width": 29
+              },
+              {
+                "WordText": "Sk",
+                "Left": 474,
+                "Top": 783,
+                "Height": 9,
+                "Width": 11
+              },
+              {
+                "WordText": "x",
+                "Left": 489,
+                "Top": 785,
+                "Height": 7,
+                "Width": 6
+              },
+              {
+                "WordText": "1",
+                "Left": 496,
+                "Top": 783,
+                "Height": 9,
+                "Width": 3
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 783
+          },
+          {
+            "LineText": "ricidencias",
+            "Words": [
+              {
+                "WordText": "ricidencias",
+                "Left": 434,
+                "Top": 820,
+                "Height": 12,
+                "Width": 69
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 820
+          },
+          {
+            "LineText": "Horario entrega",
+            "Words": [
+              {
+                "WordText": "Horario",
+                "Left": 1064,
+                "Top": 406,
+                "Height": 10,
+                "Width": 46
+              },
+              {
+                "WordText": "entrega",
+                "Left": 1114,
+                "Top": 406,
+                "Height": 12,
+                "Width": 46
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 406
+          },
+          {
+            "LineText": "i Persona contacto",
+            "Words": [
+              {
+                "WordText": "i",
+                "Left": 1180,
+                "Top": 402,
+                "Height": 18,
+                "Width": 2
+              },
+              {
+                "WordText": "Persona",
+                "Left": 1189,
+                "Top": 404,
+                "Height": 10,
+                "Width": 50
+              },
+              {
+                "WordText": "contacto",
+                "Left": 1243,
+                "Top": 405,
+                "Height": 10,
+                "Width": 51
+              }
+            ],
+            "MaxHeight": 18,
+            "MinTop": 402
+          },
+          {
+            "LineText": "Código",
+            "Words": [
+              {
+                "WordText": "Código",
+                "Left": 143,
+                "Top": 467,
+                "Height": 14,
+                "Width": 50
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 467
+          },
+          {
+            "LineText": "Articulo",
+            "Words": [
+              {
+                "WordText": "Articulo",
+                "Left": 139,
+                "Top": 485,
+                "Height": 12,
+                "Width": 56
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 485
+          },
+          {
+            "LineText": "Ref.",
+            "Words": [
+              {
+                "WordText": "Ref.",
+                "Left": 248,
+                "Top": 470,
+                "Height": 10,
+                "Width": 27
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 470
+          },
+          {
+            "LineText": "Proveedor",
+            "Words": [
+              {
+                "WordText": "Proveedor",
+                "Left": 223,
+                "Top": 487,
+                "Height": 12,
+                "Width": 71
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 487
+          },
+          {
+            "LineText": "Venta",
+            "Words": [
+              {
+                "WordText": "Venta",
+                "Left": 685,
+                "Top": 468,
+                "Height": 9,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 468
+          },
+          {
+            "LineText": "Cantidad Peso",
+            "Words": [
+              {
+                "WordText": "Cantidad",
+                "Left": 643,
+                "Top": 489,
+                "Height": 11,
+                "Width": 56
+              },
+              {
+                "WordText": "Peso",
+                "Left": 723,
+                "Top": 489,
+                "Height": 10,
+                "Width": 30
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 489
+          },
+          {
+            "LineText": "19.00",
+            "Words": [
+              {
+                "WordText": "19.00",
+                "Left": 677,
+                "Top": 512,
+                "Height": 8,
+                "Width": 27
+              }
+            ],
+            "MaxHeight": 8,
+            "MinTop": 512
+          },
+          {
+            "LineText": "1.00",
+            "Words": [
+              {
+                "WordText": "1.00",
+                "Left": 682,
+                "Top": 689,
+                "Height": 11,
+                "Width": 22
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 689
+          },
+          {
+            "LineText": "1.00",
+            "Words": [
+              {
+                "WordText": "1.00",
+                "Left": 683,
+                "Top": 780,
+                "Height": 10,
+                "Width": 21
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 780
+          },
+          {
+            "LineText": "Promoción",
+            "Words": [
+              {
+                "WordText": "Promoción",
+                "Left": 803,
+                "Top": 468,
+                "Height": 12,
+                "Width": 65
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 468
+          },
+          {
+            "LineText": "Cantidad peso",
+            "Words": [
+              {
+                "WordText": "Cantidad",
+                "Left": 777,
+                "Top": 489,
+                "Height": 11,
+                "Width": 54
+              },
+              {
+                "WordText": "peso",
+                "Left": 856,
+                "Top": 490,
+                "Height": 10,
+                "Width": 30
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 489
+          },
+          {
+            "LineText": "precio",
+            "Words": [
+              {
+                "WordText": "precio",
+                "Left": 917,
+                "Top": 470,
+                "Height": 10,
+                "Width": 40
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 470
+          },
+          {
+            "LineText": "Tarifa",
+            "Words": [
+              {
+                "WordText": "Tarifa",
+                "Left": 920,
+                "Top": 487,
+                "Height": 10,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 487
+          },
+          {
+            "LineText": "10_1130",
+            "Words": [
+              {
+                "WordText": "10_1130",
+                "Left": 930,
+                "Top": 568,
+                "Height": 9,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 568
+          },
+          {
+            "LineText": "10.7810",
+            "Words": [
+              {
+                "WordText": "10.7810",
+                "Left": 931,
+                "Top": 598,
+                "Height": 9,
+                "Width": 40
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 598
+          },
+          {
+            "LineText": "19_4990",
+            "Words": [
+              {
+                "WordText": "19_4990",
+                "Left": 931,
+                "Top": 627,
+                "Height": 10,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 627
+          },
+          {
+            "LineText": "28.3930",
+            "Words": [
+              {
+                "WordText": "28.3930",
+                "Left": 933,
+                "Top": 716,
+                "Height": 10,
+                "Width": 42
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 716
+          },
+          {
+            "LineText": "721070",
+            "Words": [
+              {
+                "WordText": "721070",
+                "Left": 933,
+                "Top": 746,
+                "Height": 9,
+                "Width": 42
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 746
+          },
+          {
+            "LineText": "18.5710",
+            "Words": [
+              {
+                "WordText": "18.5710",
+                "Left": 935,
+                "Top": 776,
+                "Height": 9,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 776
+          },
+          {
+            "LineText": "Dto.",
+            "Words": [
+              {
+                "WordText": "Dto.",
+                "Left": 988,
+                "Top": 469,
+                "Height": 10,
+                "Width": 25
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 469
+          },
+          {
+            "LineText": "Unitario",
+            "Words": [
+              {
+                "WordText": "Unitario",
+                "Left": 976,
+                "Top": 485,
+                "Height": 11,
+                "Width": 48
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 485
+          },
+          {
+            "LineText": "precio TOTAL TOTAL",
+            "Words": [
+              {
+                "WordText": "precio",
+                "Left": 1047,
+                "Top": 468,
+                "Height": 10,
+                "Width": 39
+              },
+              {
+                "WordText": "TOTAL",
+                "Left": 1113,
+                "Top": 467,
+                "Height": 10,
+                "Width": 45
+              },
+              {
+                "WordText": "TOTAL",
+                "Left": 1170,
+                "Top": 465,
+                "Height": 11,
+                "Width": 45
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 465
+          },
+          {
+            "LineText": "venta p.verde IBEE",
+            "Words": [
+              {
+                "WordText": "venta",
+                "Left": 1048,
+                "Top": 485,
+                "Height": 10,
+                "Width": 36
+              },
+              {
+                "WordText": "p.verde",
+                "Left": 1111,
+                "Top": 484,
+                "Height": 10,
+                "Width": 48
+              },
+              {
+                "WordText": "IBEE",
+                "Left": 1177,
+                "Top": 483,
+                "Height": 10,
+                "Width": 31
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 483
+          },
+          {
+            "LineText": "76910",
+            "Words": [
+              {
+                "WordText": "76910",
+                "Left": 1066,
+                "Top": 508,
+                "Height": 9,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 508
+          },
+          {
+            "LineText": "10_1130",
+            "Words": [
+              {
+                "WordText": "10_1130",
+                "Left": 1062,
+                "Top": 567,
+                "Height": 8,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 8,
+            "MinTop": 567
+          },
+          {
+            "LineText": "10.7810",
+            "Words": [
+              {
+                "WordText": "10.7810",
+                "Left": 1064,
+                "Top": 596,
+                "Height": 10,
+                "Width": 40
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 596
+          },
+          {
+            "LineText": "194990",
+            "Words": [
+              {
+                "WordText": "194990",
+                "Left": 1064,
+                "Top": 626,
+                "Height": 9,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 626
+          },
+          {
+            "LineText": "9,0500",
+            "Words": [
+              {
+                "WordText": "9,0500",
+                "Left": 1072,
+                "Top": 685,
+                "Height": 10,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 685
+          },
+          {
+            "LineText": "721070",
+            "Words": [
+              {
+                "WordText": "721070",
+                "Left": 1067,
+                "Top": 745,
+                "Height": 9,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 745
+          },
+          {
+            "LineText": "18.5710",
+            "Words": [
+              {
+                "WordText": "18.5710",
+                "Left": 1068,
+                "Top": 775,
+                "Height": 9,
+                "Width": 41
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 775
+          },
+          {
+            "LineText": "Importe R. E.",
+            "Words": [
+              {
+                "WordText": "Importe",
+                "Left": 1055,
+                "Top": 812,
+                "Height": 12,
+                "Width": 48
+              },
+              {
+                "WordText": "R.",
+                "Left": 1107,
+                "Top": 811,
+                "Height": 10,
+                "Width": 13
+              },
+              {
+                "WordText": "E.",
+                "Left": 1124,
+                "Top": 810,
+                "Height": 11,
+                "Width": 12
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 810
+          },
+          {
+            "LineText": "TOTAL",
+            "Words": [
+              {
+                "WordText": "TOTAL",
+                "Left": 1240,
+                "Top": 465,
+                "Height": 10,
+                "Width": 40
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 465
+          },
+          {
+            "LineText": "Importe",
+            "Words": [
+              {
+                "WordText": "Importe",
+                "Left": 1237,
+                "Top": 482,
+                "Height": 13,
+                "Width": 45
+              }
+            ],
+            "MaxHeight": 13,
+            "MinTop": 482
+          },
+          {
+            "LineText": "_ .1M81",
+            "Words": [
+              {
+                "WordText": "_",
+                "Left": 1248,
+                "Top": 602,
+                "Height": 2,
+                "Width": 16
+              },
+              {
+                "WordText": ".1M81",
+                "Left": 1265,
+                "Top": 594,
+                "Height": 10,
+                "Width": 34
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 594
+          },
+          {
+            "LineText": "Tel.",
+            "Words": [
+              {
+                "WordText": "Tel.",
+                "Left": 1336,
+                "Top": 405,
+                "Height": 10,
+                "Width": 21
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 405
+          },
+          {
+            "LineText": "TOTAL",
+            "Words": [
+              {
+                "WordText": "TOTAL",
+                "Left": 1363,
+                "Top": 473,
+                "Height": 10,
+                "Width": 43
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 473
+          },
+          {
+            "LineText": "rvA",
+            "Words": [
+              {
+                "WordText": "rvA",
+                "Left": 1308,
+                "Top": 483,
+                "Height": 10,
+                "Width": 21
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 483
+          },
+          {
+            "LineText": "21",
+            "Words": [
+              {
+                "WordText": "21",
+                "Left": 1311,
+                "Top": 594,
+                "Height": 9,
+                "Width": 11
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 594
+          },
+          {
+            "LineText": "23012",
+            "Words": [
+              {
+                "WordText": "23012",
+                "Left": 165,
+                "Top": 540,
+                "Height": 10,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 540
+          },
+          {
+            "LineText": "211660",
+            "Words": [
+              {
+                "WordText": "211660",
+                "Left": 156,
+                "Top": 571,
+                "Height": 10,
+                "Width": 43
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 571
+          },
+          {
+            "LineText": "211670",
+            "Words": [
+              {
+                "WordText": "211670",
+                "Left": 154,
+                "Top": 602,
+                "Height": 10,
+                "Width": 44
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 602
+          },
+          {
+            "LineText": "103096",
+            "Words": [
+              {
+                "WordText": "103096",
+                "Left": 154,
+                "Top": 633,
+                "Height": 10,
+                "Width": 43
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 633
+          },
+          {
+            "LineText": "105779",
+            "Words": [
+              {
+                "WordText": "105779",
+                "Left": 152,
+                "Top": 664,
+                "Height": 10,
+                "Width": 43
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 664
+          },
+          {
+            "LineText": "82418",
+            "Words": [
+              {
+                "WordText": "82418",
+                "Left": 157,
+                "Top": 696,
+                "Height": 10,
+                "Width": 36
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 696
+          },
+          {
+            "LineText": "110830",
+            "Words": [
+              {
+                "WordText": "110830",
+                "Left": 148,
+                "Top": 727,
+                "Height": 10,
+                "Width": 44
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 727
+          },
+          {
+            "LineText": "110834",
+            "Words": [
+              {
+                "WordText": "110834",
+                "Left": 147,
+                "Top": 759,
+                "Height": 9,
+                "Width": 42
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 759
+          },
+          {
+            "LineText": "110227",
+            "Words": [
+              {
+                "WordText": "110227",
+                "Left": 145,
+                "Top": 790,
+                "Height": 10,
+                "Width": 43
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 790
+          },
+          {
+            "LineText": "Conforme y firma",
+            "Words": [
+              {
+                "WordText": "Conforme",
+                "Left": 124,
+                "Top": 830,
+                "Height": 12,
+                "Width": 71
+              },
+              {
+                "WordText": "y",
+                "Left": 200,
+                "Top": 832,
+                "Height": 10,
+                "Width": 8
+              },
+              {
+                "WordText": "firma",
+                "Left": 213,
+                "Top": 829,
+                "Height": 10,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 829
+          },
+          {
+            "LineText": "UNI",
+            "Words": [
+              {
+                "WordText": "UNI",
+                "Left": 609,
+                "Top": 660,
+                "Height": 10,
+                "Width": 19
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 660
+          },
+          {
+            "LineText": "UNI",
+            "Words": [
+              {
+                "WordText": "UNI",
+                "Left": 608,
+                "Top": 781,
+                "Height": 10,
+                "Width": 20
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 781
+          },
+          {
+            "LineText": "uso",
+            "Words": [
+              {
+                "WordText": "uso",
+                "Left": 1278,
+                "Top": 683,
+                "Height": 10,
+                "Width": 28
+              }
+            ],
+            "MaxHeight": 10,
+            "MinTop": 683
+          },
+          {
+            "LineText": "72107",
+            "Words": [
+              {
+                "WordText": "72107",
+                "Left": 1274,
+                "Top": 743,
+                "Height": 9,
+                "Width": 35
+              }
+            ],
+            "MaxHeight": 9,
+            "MinTop": 743
+          },
+          {
+            "LineText": "Base Imponible",
+            "Words": [
+              {
+                "WordText": "Base",
+                "Left": 689,
+                "Top": 818,
+                "Height": 10,
+                "Width": 31
+              },
+              {
+                "WordText": "Imponible",
+                "Left": 725,
+                "Top": 816,
+                "Height": 14,
+                "Width": 62
+              }
+            ],
+            "MaxHeight": 14,
+            "MinTop": 816
+          },
+          {
+            "LineText": "% IVA",
+            "Words": [
+              {
+                "WordText": "%",
+                "Left": 809,
+                "Top": 815,
+                "Height": 11,
+                "Width": 12
+              },
+              {
+                "WordText": "IVA",
+                "Left": 825,
+                "Top": 814,
+                "Height": 11,
+                "Width": 22
+              }
+            ],
+            "MaxHeight": 11,
+            "MinTop": 814
+          },
+          {
+            "LineText": "Importe IVA % R. E.",
+            "Words": [
+              {
+                "WordText": "Importe",
+                "Left": 877,
+                "Top": 814,
+                "Height": 12,
+                "Width": 48
+              },
+              {
+                "WordText": "IVA",
+                "Left": 929,
+                "Top": 813,
+                "Height": 10,
+                "Width": 22
+              },
+              {
+                "WordText": "%",
+                "Left": 984,
+                "Top": 812,
+                "Height": 11,
+                "Width": 12
+              },
+              {
+                "WordText": "R.",
+                "Left": 1000,
+                "Top": 812,
+                "Height": 11,
+                "Width": 12
+              },
+              {
+                "WordText": "E.",
+                "Left": 1017,
+                "Top": 812,
+                "Height": 10,
+                "Width": 12
+              }
+            ],
+            "MaxHeight": 12,
+            "MinTop": 812
+          }
+        ],
+        "HasOverlay": true,
+        "Message": "Total lines: 110"
+      },
+      "TextOrientation": "0",
+      "FileParseExitCode": 1,
+      "ParsedText": "LUGAR DE ENTREGA :\r\nEI Mismo\r\nCALIDAD\r\nDISBESA\r\nDrinks sol, S.L.\r\nCLIENTE\r\nALBARAN .\r\nFECHA\r\n299448\r\n177494\r\n30/12/2024\r\nTel. 952 2312% Fax 952 237703 • CL caleta de Velez (Pol. Santa • 29004 Malaga • MALAGA\r\nN.O.P. Repartidor ! N• Carga r Vendedor Cobrador\r\nRAZÓN SOCIAL :\r\nSODEXO IBERIA SA\r\nCLINICA EL SERANIL\r\nCR ALMERIA - KM,261\r\n29790 Benajarafe\r\nMALAGA\r\nIdent ticket F.F. A\r\nServido por cuenta de:\r\nBebidas y Marketing S L (DFS)\r\nS/ Referencia\r\n7109595592\r\nA08427296\r\nPag. : 1 de 2\r\nForrna de pago\r\nTerceros\r\n24439\r\n1292\r\nObservaciones:\r\nS,'CTE 61339\r\n1 11\r\nDescripción\r\nDesnatada Camçesina Br. 1 L_x6\r\nun': 19 cad: 27'04,'2S 20241129\r\nLeche Ent8-a Campesina Br_ I L\r\nNectar Piña Disfruta DSimon , 5Lx6\r\nUni: 2 cadi 09101'25 Lote 20240415\r\nNectar D. Simon .SLxS\r\nuní: Cad: 09/12'24 Lote- 20240315\r\nCacao Sduble Nesquik 3Kx1\r\nUn': 1 cad: 01/02'26 Lote: 422101291L\r\nFideua Bondore SK XI\r\nUni: 1 cad: 01/08,27 Lote; 542350\r\nFideos Bondore SK XI\r\nurú: 1 cad: 16/09,27 Lote 54300\r\nAceite Girasol Carrion Pet 51x3\r\nun': 1 Cad: N596\r\nAceite Orujo Carrion pet SL x3\r\nun': 1 cad: 01/10t25 Lote: M598\r\nMayonesa Profesional Heinz Sk x 1\r\nricidencias\r\nHorario entrega\r\ni Persona contacto\r\nCódigo\r\nArticulo\r\nRef.\r\nProveedor\r\nVenta\r\nCantidad Peso\r\n19.00\r\n1.00\r\n1.00\r\nPromoción\r\nCantidad peso\r\nprecio\r\nTarifa\r\n10_1130\r\n10.7810\r\n19_4990\r\n28.3930\r\n721070\r\n18.5710\r\nDto.\r\nUnitario\r\nprecio TOTAL TOTAL\r\nventa p.verde IBEE\r\n76910\r\n10_1130\r\n10.7810\r\n194990\r\n9,0500\r\n721070\r\n18.5710\r\nImporte R. E.\r\nTOTAL\r\nImporte\r\n_ .1M81\r\nTel.\r\nTOTAL\r\nrvA\r\n21\r\n23012\r\n211660\r\n211670\r\n103096\r\n105779\r\n82418\r\n110830\r\n110834\r\n110227\r\nConforme y firma\r\nUNI\r\nUNI\r\nuso\r\n72107\r\nBase Imponible\r\n% IVA\r\nImporte IVA % R. E.\r\n",
+      "ErrorMessage": "",
+      "ErrorDetails": ""
+    }
+  ],
+  "OCRExitCode": 1,
+  "IsErroredOnProcessing": false,
+  "ProcessingTimeInMilliseconds": "640",
+  "SearchablePDFURL": "Searchable PDF not generated as it was not requested."
+}
