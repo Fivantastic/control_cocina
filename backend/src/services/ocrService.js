@@ -19,10 +19,14 @@ class OCRService {
                 OCREngine: ocrConfig.options.OCREngine,
                 isTable: ocrConfig.options.isTable
             });
+            
+            // Usar directamente la clave API del .env en lugar de confiar en la configuración
+            const apiKey = process.env.OCR_API_KEY;
+            console.log('Usando clave API:', apiKey ? 'Configurada' : 'No configurada');
 
             const response = await axios.post(ocrConfig.apiEndpoint, formData, {
                 headers: {
-                    'apikey': ocrConfig.apiKey,
+                    'apikey': apiKey,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 timeout: 30000,
@@ -31,7 +35,10 @@ class OCRService {
                 }
             });
 
+            console.log('Respuesta de OCR.space:', JSON.stringify(response.data, null, 2));
+
             if (response.data.OCRExitCode !== 1) {
+                console.error('Error en OCR.space:', response.data.ErrorMessage || 'Error desconocido');
                 throw new Error(response.data.ErrorMessage || 'Error en el procesamiento OCR');
             }
 
@@ -44,17 +51,26 @@ class OCRService {
     }
 
     async extractDeliveryNoteData(ocrResult) {
-        const parsedResults = ocrResult.ParsedResults[0];
-        let parsedText = parsedResults.ParsedText;
-        
-        // Obtener el parser adecuado
-        const parser = getParser(parsedText);
-        if (!parser) {
-            throw new Error('No se encontró un parser adecuado para este albarán');
-        }
+        try {
+            const parsedResults = ocrResult.ParsedResults[0];
+            let parsedText = parsedResults.ParsedText;
+            
+            if (!parsedText || parsedText.trim() === '') {
+                throw new Error('El OCR no pudo extraer texto de la imagen');
+            }
+            
+            // Obtener el parser adecuado
+            const parser = getParser(parsedText);
+            if (!parser) {
+                throw new Error('No se encontró un parser adecuado para este albarán');
+            }
 
-        // Usar el parser para extraer los datos
-        return parser.parse(parsedText);
+            // Usar el parser para extraer los datos
+            return parser.parse(parsedText);
+        } catch (error) {
+            console.error('Error al extraer datos estructurados:', error);
+            throw error;
+        }
     }
 }
 

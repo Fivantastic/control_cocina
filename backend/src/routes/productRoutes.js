@@ -11,16 +11,34 @@ router.get('/low-stock', productController.getLowStock);
 // Search products
 router.get('/search', productController.searchProducts);
 
+// Get all product types
+router.get('/types', productController.getAllProductTypes);
+
+// Get all units
+router.get('/units', productController.getAllUnits);
+
 // Get products by type
 router.get('/type/:typeId', productController.getProductsByType);
 
 // Get product by ID
 router.get('/:id', productController.getProductById);
 
+// Create a new product
+router.post('/', productController.createProduct);
+
+// Update an existing product (complete update)
+router.put('/:id', productController.updateProduct);
+
+// Partial update of a product
+router.patch('/:id', productController.updateProduct);
+
 // Update product stock
 router.patch('/:id/stock', productController.updateStock);
 
 // Update minimum stock
 router.patch('/:id/minimum-stock', productController.updateMinimumStock);
+
+// Delete a product
+router.delete('/:id', productController.deleteProduct);
 
 export default router;

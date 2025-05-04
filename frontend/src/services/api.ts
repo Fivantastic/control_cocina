@@ -54,6 +54,41 @@ export const productService = {
     updateMinimumStock: async (id: number, payload: UpdateMinimumStockPayload): Promise<void> => {
         await api.patch(`/products/${id}/minimum-stock`, payload);
     },
+
+    // Get all product types
+    getAllProductTypes: async () => {
+        const response = await api.get('/products/types');
+        return response.data;
+    },
+
+    // Get all units
+    getAllUnits: async () => {
+        const response = await api.get('/products/units');
+        return response.data;
+    },
+
+    // Create a new product
+    createProduct: async (product: Omit<Product, 'id' | 'created_at' | 'updated_at'>): Promise<Product> => {
+        const response = await api.post('/products', product);
+        return response.data.product;
+    },
+
+    // Update a product
+    updateProduct: async (id: number, product: Partial<Product>): Promise<Product> => {
+        const response = await api.put(`/products/${id}`, product);
+        return response.data.product;
+    },
+
+    // Delete a product
+    deleteProduct: async (id: number): Promise<void> => {
+        try {
+            await api.delete(`/products/${id}`);
+        } catch (error) {
+            // Asegurarse de que el error se propague con toda la información
+            console.error('Error al eliminar producto:', error);
+            throw error;
+        }
+    }
 };
 
 export const menuStockService = {

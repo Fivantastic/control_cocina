@@ -20,5 +20,12 @@ export const dbConfig = {
 
 export const serverConfig = {
     port: process.env.PORT || 3000,
-    corsOrigin: 'http://localhost:5173'
+    corsOrigin: function(origin, callback) {
+        const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:46397'];
+        if (!origin || allowedOrigins.indexOf(origin) !== -1 || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 };

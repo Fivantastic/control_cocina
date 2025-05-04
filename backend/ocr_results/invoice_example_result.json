@@ -1,0 +1,28 @@
+{
+  "pages": [
+    {
+      "index": 0,
+      "markdown": "# INVOICE \n\n![img-0.jpeg](img-0.jpeg)\n<Your Company Name>\n<123 Street Address>\n<City, State, Zip/Post Code>\n<Phone Number>\n<Email Address>\n<Payment terms (due on receipt, due in $X$ days)>\nBILL TO\nSHIP TO\n<Contact Name>\n<Client Company Name>\n<Address>\n<Phone>\n<Email>\n\n| DESCRIPTION | QTY | UNIT PRICE | TOTAL |\n| :--: | :--: | :--: | :--: |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n|  |  |  | 0.00 |\n| Remarks / Payment Instructions: |  | SUBTOTAL | 0.00 |\n|  |  | DISCOUNT | 0.00 |\n|  |  | SUBTOTAL LESS DISCOUNT | 0.00 |\n|  |  | TAX RATE | $0.00 \\%$ |\n|  |  | TOTAL TAX | 0.00 |\n|  |  | SHIPPING/HANDLING | 0.00 |\n|  |  | Balance Due | \\$ |",
+      "images": [
+        {
+          "id": "img-0.jpeg",
+          "top_left_x": 428,
+          "top_left_y": 55,
+          "bottom_right_x": 556,
+          "bottom_right_y": 118,
+          "image_base64": null
+        }
+      ],
+      "dimensions": {
+        "dpi": 200,
+        "height": 792,
+        "width": 612
+      }
+    }
+  ],
+  "model": "mistral-ocr-2503-completion",
+  "usage_info": {
+    "pages_processed": 1,
+    "doc_size_bytes": 14054
+  }
+}

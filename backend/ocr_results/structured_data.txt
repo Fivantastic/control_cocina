@@ -1,0 +1,3 @@
+Para poder ayudarte a extraer los datos estructurados del albarán y organizarlos en un formato JSON, necesitaría más información del texto del albarán. El fragmento que has proporcionado es muy breve y no contiene suficiente información para identificar el proveedor, la fecha, y la lista de productos con sus detalles.
+
+Por favor, proporciona el texto completo del albarán o al menos una sección más detallada que incluya la información necesaria para poder realizar el análisis y la estructuración en formato JSON.
