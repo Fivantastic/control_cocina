@@ -12,6 +12,11 @@ import {
     ListItemText,
     Toolbar,
     Typography,
+    Button,
+    Menu,
+    MenuItem,
+    Chip,
+    Divider,
 } from '@mui/material';
 import {
     Menu as MenuIcon,
@@ -21,27 +26,49 @@ import {
     RestaurantMenu as RestaurantMenuIcon,
     LocalShipping as LocalShippingIcon,
     Business as BusinessIcon,
+    ArrowDropDown as ArrowDropDownIcon,
+    LocationOn as LocationOnIcon,
+    People as PeopleIcon,
 } from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { useClinic } from '../contexts/ClinicContext';
 
 const drawerWidth = 240;
 
-interface MainLayoutProps {
-    children: React.ReactNode;
-}
-
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout: React.FC = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const { selectedClinic, clinics, setSelectedClinic } = useClinic();
+    
+    // Estado para el menú de selección de clínica
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    
+    const handleClinicChange = (clinicId: number) => {
+        const clinic = clinics.find(c => c.id === clinicId);
+        if (clinic) {
+            setSelectedClinic(clinic);
+        }
+        handleClose();
+    };
 
     const menuItems = [
-        { text: 'Inventario', icon: <InventoryIcon />, path: '/' },
+        { text: 'Inventario', icon: <InventoryIcon />, path: '/productos' },
         { text: 'Menús', icon: <RestaurantMenuIcon />, path: '/menus' },
-        { text: 'Proveedores', icon: <BusinessIcon />, path: '/suppliers' },
-        { text: 'Albaranes', icon: <LocalShippingIcon />, path: '/delivery-notes' },
-        { text: 'Reportes', icon: <AssessmentIcon />, path: '/reports' },
-        { text: 'Configuración', icon: <SettingsIcon />, path: '/settings' },
+        { text: 'Proveedores', icon: <BusinessIcon />, path: '/proveedores' },
+        { text: 'Albaranes', icon: <LocalShippingIcon />, path: '/notas-de-entrega' },
+        { text: 'Pacientes', icon: <PeopleIcon />, path: '/pacientes' },
+        { text: 'Reportes', icon: <AssessmentIcon />, path: '/reportes' },
+        { text: 'Configuración', icon: <SettingsIcon />, path: '/configuracion' },
     ];
 
     const handleDrawerToggle = () => {
@@ -50,12 +77,33 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
     const drawer = (
         <div>
-            <Toolbar />
+            <Toolbar>
+                <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+                    Kitchen Manager
+                </Typography>
+            </Toolbar>
+            <Divider />
+            {selectedClinic && (
+                <Box sx={{ p: 2 }}>
+                    <Chip
+                        icon={<LocationOnIcon />}
+                        label={selectedClinic.name}
+                        color="primary"
+                        variant="outlined"
+                        sx={{ width: '100%', justifyContent: 'flex-start' }}
+                    />
+                </Box>
+            )}
+            <Divider />
             <List>
                 {menuItems.map((item) => (
                     <ListItem key={item.text} disablePadding>
                         <ListItemButton
-                            selected={location.pathname === item.path}
+                            selected={
+                                item.path === '/' 
+                                    ? location.pathname === '/' 
+                                    : location.pathname.startsWith(item.path)
+                            }
                             onClick={() => navigate(item.path)}
                         >
                             <ListItemIcon>{item.icon}</ListItemIcon>
@@ -87,9 +135,37 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
                         Kitchen Manager
                     </Typography>
+                    
+                    {selectedClinic && (
+                        <>
+                            <Button
+                                color="inherit"
+                                onClick={handleClick}
+                                endIcon={<ArrowDropDownIcon />}
+                                startIcon={<LocationOnIcon />}
+                            >
+                                {selectedClinic.name}
+                            </Button>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                {clinics.map((clinic) => (
+                                    <MenuItem 
+                                        key={clinic.id}
+                                        onClick={() => handleClinicChange(clinic.id)}
+                                        selected={clinic.id === selectedClinic.id}
+                                    >
+                                        {clinic.name}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </>
+                    )}
                 </Toolbar>
             </AppBar>
             <Box
@@ -130,7 +206,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                     mt: '64px',
                 }}
             >
-                {children}
+                <Outlet />
             </Box>
         </Box>
     );

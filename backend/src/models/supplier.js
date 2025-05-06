@@ -1,31 +1,32 @@
 import { pool } from '../utils/db.js';
 
 class Supplier {
-    static async getAll() {
+    static async getAll(clinicId = 1) {
         try {
             const [rows] = await pool.query(`
                 SELECT * FROM suppliers
+                WHERE clinic_id = ?
                 ORDER BY name
-            `);
+            `, [clinicId]);
             return rows;
         } catch (error) {
             throw error;
         }
     }
 
-    static async getById(id) {
+    static async getById(id, clinicId = 1) {
         try {
             const [rows] = await pool.query(`
                 SELECT * FROM suppliers
-                WHERE id = ?
-            `, [id]);
+                WHERE id = ? AND clinic_id = ?
+            `, [id, clinicId]);
             return rows[0];
         } catch (error) {
             throw error;
         }
     }
 
-    static async create(supplierData) {
+    static async create(supplierData, clinicId = 1) {
         try {
             const {
                 code,
@@ -51,8 +52,9 @@ class Supplier {
                     delivery_schedule,
                     temperature_requirements,
                     sales_rep_name,
-                    sales_rep_id
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    sales_rep_id,
+                    clinic_id
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `, [
                 code,
                 name,
@@ -63,7 +65,8 @@ class Supplier {
                 delivery_schedule,
                 temperature_requirements,
                 sales_rep_name,
-                sales_rep_id
+                sales_rep_id,
+                clinicId
             ]);
 
             return { id: result.insertId, ...supplierData };
@@ -72,7 +75,7 @@ class Supplier {
         }
     }
 
-    static async update(id, supplierData) {
+    static async update(id, supplierData, clinicId = 1) {
         try {
             const {
                 code,
@@ -99,7 +102,7 @@ class Supplier {
                     temperature_requirements = ?,
                     sales_rep_name = ?,
                     sales_rep_id = ?
-                WHERE id = ?
+                WHERE id = ? AND clinic_id = ?
             `, [
                 code,
                 name,
@@ -111,7 +114,8 @@ class Supplier {
                 temperature_requirements,
                 sales_rep_name,
                 sales_rep_id,
-                id
+                id,
+                clinicId
             ]);
 
             return { id, ...supplierData };
@@ -120,9 +124,9 @@ class Supplier {
         }
     }
 
-    static async delete(id) {
+    static async delete(id, clinicId = 1) {
         try {
-            await pool.query('DELETE FROM suppliers WHERE id = ?', [id]);
+            await pool.query('DELETE FROM suppliers WHERE id = ? AND clinic_id = ?', [id, clinicId]);
             return true;
         } catch (error) {
             throw error;
