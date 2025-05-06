@@ -7,12 +7,51 @@ import { StockMovement, ProductStock } from '../types/stock';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
+// Variable para almacenar el ID de la clínica seleccionada
+let currentClinicId = localStorage.getItem('selectedClinicId') || '1';
+
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         'Content-Type': 'application/json',
+        'X-Clinic-ID': currentClinicId
     },
+    params: {
+        clinicId: currentClinicId
+    }
 });
+
+// Función para establecer el ID de la clínica
+export const setClinicId = (clinicId: string) => {
+    currentClinicId = clinicId;
+    localStorage.setItem('selectedClinicId', clinicId);
+    
+    // Actualizar los headers y params por defecto
+    api.defaults.headers.common['X-Clinic-ID'] = clinicId;
+    api.defaults.params = { ...api.defaults.params, clinicId };
+    
+    console.log(`API: Clínica ID establecido a ${clinicId}`);
+};
+
+// Configurar interceptor para asegurar que todas las solicitudes incluyan el ID de la clínica
+api.interceptors.request.use((config) => {
+    // Asegurarse de que el ID de la clínica esté en los headers
+    config.headers = config.headers || {};
+    config.headers['X-Clinic-ID'] = currentClinicId;
+    
+    // Asegurarse de que el objeto params exista
+    config.params = config.params || {};
+    
+    // Añadir el ID de la clínica a los parámetros de consulta
+    config.params.clinicId = currentClinicId;
+    
+    return config;
+});
+
+// Inicializar con el ID de la clínica almacenado en localStorage
+if (localStorage.getItem('selectedClinicId')) {
+    setClinicId(localStorage.getItem('selectedClinicId') || '1');
+}
 
 export const productService = {
     // Get all products

@@ -9,23 +9,37 @@ import deliveryNoteRoutes from './routes/deliveryNoteRoutes.js';
 import stockMovementRoutes from './routes/stockMovements.js';
 import menuStockRoutes from './routes/menuStock.js';
 import deliveryNoteUploadRoutes from './routes/deliveryNoteUpload.js';
+import clinicRoutes from './routes/clinicRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import { extractClinicIdSimple } from './middleware/clinicMiddleware.js';
 import { initializeParsers } from './parsers/initParsers.js';
 
 const app = express();
 
 // Middleware
 app.use(cors({
-    origin: serverConfig.corsOrigin,
-    optionsSuccessStatus: 200,
-    credentials: true
+    origin: function(origin, callback) {
+        // Permitir solicitudes sin origen (como las solicitudes móviles o curl)
+        if (!origin) return callback(null, true);
+        // Permitir localhost y 127.0.0.1 en cualquier puerto
+        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            return callback(null, true);
+        }
+        // Rechazar otras solicitudes
+        callback(new Error('Not allowed by CORS'));
+    }
 }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Logging middleware
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
     next();
 });
+
+// Middleware para manejar la selección de clínica
+app.use(extractClinicIdSimple);
 
 // Welcome route
 app.get('/', (req, res) => {
@@ -58,6 +72,8 @@ app.use('/api/delivery-notes', deliveryNoteRoutes);
 app.use('/api/delivery-notes-upload', deliveryNoteUploadRoutes);
 app.use('/api/stock', stockMovementRoutes);
 app.use('/api/menu-stock', menuStockRoutes);
+app.use('/api/clinics', clinicRoutes);
+app.use('/api/patients', patientRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

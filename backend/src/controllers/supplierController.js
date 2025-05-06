@@ -4,7 +4,7 @@ const supplierController = {
     // Get all suppliers
     getAllSuppliers: async (req, res) => {
         try {
-            const suppliers = await Supplier.getAll();
+            const suppliers = await Supplier.getAll(req.clinicId);
             res.json(suppliers);
         } catch (error) {
             res.status(500).json({ message: 'Error retrieving suppliers', error: error.message });
@@ -14,7 +14,7 @@ const supplierController = {
     // Get supplier by ID
     getSupplierById: async (req, res) => {
         try {
-            const supplier = await Supplier.getById(req.params.id);
+            const supplier = await Supplier.getById(req.params.id, req.clinicId);
             if (supplier) {
                 res.json(supplier);
             } else {
@@ -41,7 +41,7 @@ const supplierController = {
                 sales_rep_id: req.body.sales_rep_id
             };
 
-            const newSupplier = await Supplier.create(supplierData);
+            const newSupplier = await Supplier.create(supplierData, req.clinicId);
             res.status(201).json(newSupplier);
         } catch (error) {
             res.status(500).json({ message: 'Error creating supplier', error: error.message });
@@ -64,7 +64,7 @@ const supplierController = {
                 sales_rep_id: req.body.sales_rep_id
             };
 
-            const updatedSupplier = await Supplier.update(req.params.id, supplierData);
+            const updatedSupplier = await Supplier.update(req.params.id, supplierData, req.clinicId);
             if (updatedSupplier) {
                 res.json(updatedSupplier);
             } else {
@@ -78,7 +78,7 @@ const supplierController = {
     // Delete supplier
     deleteSupplier: async (req, res) => {
         try {
-            const result = await Supplier.delete(req.params.id);
+            const result = await Supplier.delete(req.params.id, req.clinicId);
             if (result) {
                 res.json({ message: 'Supplier deleted successfully' });
             } else {

@@ -1,6 +1,10 @@
 import express from 'express';
 const router = express.Router();
 import deliveryNoteController from '../controllers/deliveryNoteController.js';
+import { extractClinicIdSimple } from '../middleware/clinicMiddleware.js';
+
+// Aplicar el middleware a todas las rutas
+router.use(extractClinicIdSimple);
 
 // Get all delivery notes
 router.get('/', deliveryNoteController.getAllDeliveryNotes);

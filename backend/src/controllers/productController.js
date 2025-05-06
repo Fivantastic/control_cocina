@@ -4,34 +4,33 @@ const productController = {
     // Get all products
     getAllProducts: async (req, res) => {
         try {
-            const products = await Product.getAll();
+            const products = await Product.getAll(req.clinicId);
             res.json(products);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving products', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     // Get product by ID
     getProductById: async (req, res) => {
         try {
-            const product = await Product.getById(req.params.id);
-            if (product) {
-                res.json(product);
-            } else {
-                res.status(404).json({ message: 'Product not found' });
+            const product = await Product.getById(req.params.id, req.clinicId);
+            if (!product) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
             }
+            res.json(product);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving product', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     // Get products by type
     getProductsByType: async (req, res) => {
         try {
-            const products = await Product.getByType(req.params.typeId);
+            const products = await Product.getByType(req.params.typeId, req.clinicId);
             res.json(products);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving products', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -39,14 +38,13 @@ const productController = {
     updateStock: async (req, res) => {
         try {
             const { actualStock } = req.body;
-            const success = await Product.updateStock(req.params.id, actualStock);
-            if (success) {
-                res.json({ message: 'Stock updated successfully' });
-            } else {
-                res.status(404).json({ message: 'Product not found' });
+            const success = await Product.updateStock(req.params.id, actualStock, req.clinicId);
+            if (!success) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
             }
+            res.json({ message: 'Stock actualizado correctamente' });
         } catch (error) {
-            res.status(500).json({ message: 'Error updating stock', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -54,24 +52,23 @@ const productController = {
     updateMinimumStock: async (req, res) => {
         try {
             const { minimumStock } = req.body;
-            const success = await Product.updateMinimumStock(req.params.id, minimumStock);
-            if (success) {
-                res.json({ message: 'Minimum stock updated successfully' });
-            } else {
-                res.status(404).json({ message: 'Product not found' });
+            const success = await Product.updateMinimumStock(req.params.id, minimumStock, req.clinicId);
+            if (!success) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
             }
+            res.json({ message: 'Stock mínimo actualizado correctamente' });
         } catch (error) {
-            res.status(500).json({ message: 'Error updating minimum stock', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     // Get products with low stock
     getLowStock: async (req, res) => {
         try {
-            const products = await Product.getLowStock();
+            const products = await Product.getLowStock(req.clinicId);
             res.json(products);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving low stock products', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -82,10 +79,10 @@ const productController = {
             if (!query) {
                 return res.status(400).json({ message: 'Search query is required' });
             }
-            const products = await Product.search(query);
+            const products = await Product.search(query, req.clinicId);
             res.json(products);
         } catch (error) {
-            res.status(500).json({ message: 'Error searching products', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -121,7 +118,7 @@ const productController = {
                 minimum_stock,
                 price,
                 notes
-            });
+            }, req.clinicId);
 
             res.status(201).json({
                 message: 'Producto creado correctamente',
@@ -129,7 +126,7 @@ const productController = {
             });
         } catch (error) {
             console.error('Error creating product:', error);
-            res.status(500).json({ message: 'Error al crear el producto', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -151,7 +148,7 @@ const productController = {
             } = req.body;
 
             // Verificar que el producto existe
-            const existingProduct = await Product.getById(productId);
+            const existingProduct = await Product.getById(productId, req.clinicId);
             if (!existingProduct) {
                 return res.status(404).json({ message: 'Producto no encontrado' });
             }
@@ -167,7 +164,7 @@ const productController = {
                 minimum_stock,
                 price,
                 notes
-            });
+            }, req.clinicId);
 
             if (!updatedProduct) {
                 return res.status(404).json({ message: 'No se pudo actualizar el producto' });
@@ -179,7 +176,7 @@ const productController = {
             });
         } catch (error) {
             console.error('Error updating product:', error);
-            res.status(500).json({ message: 'Error al actualizar el producto', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -189,45 +186,45 @@ const productController = {
             const productId = req.params.id;
 
             // Verificar que el producto existe
-            const existingProduct = await Product.getById(productId);
+            const existingProduct = await Product.getById(productId, req.clinicId);
             if (!existingProduct) {
                 return res.status(404).json({ message: 'Producto no encontrado' });
             }
 
             try {
-                const result = await Product.delete(productId);
+                const result = await Product.delete(productId, req.clinicId);
                 if (result) {
                     res.json({ message: 'Producto eliminado correctamente' });
                 } else {
                     res.status(404).json({ message: 'No se pudo eliminar el producto' });
                 }
             } catch (deleteError) {
-                // Capturar errores específicos de eliminación (dependencias, etc.)
-                res.status(400).json({ message: deleteError.message });
+                console.error('Error deleting product:', deleteError);
+                res.status(500).json({ message: deleteError.message });
             }
         } catch (error) {
-            console.error('Error deleting product:', error);
-            res.status(500).json({ message: 'Error al eliminar el producto', error: error.message });
+            console.error('Error checking product existence:', error);
+            res.status(500).json({ message: error.message });
         }
     },
 
     // Get all product types
     getAllProductTypes: async (req, res) => {
         try {
-            const types = await Product.getAllTypes();
+            const types = await Product.getAllProductTypes(req.clinicId);
             res.json(types);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving product types', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     // Get all units
     getAllUnits: async (req, res) => {
         try {
-            const units = await Product.getAllUnits();
+            const units = await Product.getAllUnits(req.clinicId);
             res.json(units);
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving units', error: error.message });
+            res.status(500).json({ message: error.message });
         }
     }
 };

@@ -4,7 +4,7 @@ const deliveryNoteController = {
     // Get all delivery notes
     getAllDeliveryNotes: async (req, res) => {
         try {
-            const deliveryNotes = await DeliveryNote.getAll();
+            const deliveryNotes = await DeliveryNote.getAll(req.clinicId);
             res.json(deliveryNotes);
         } catch (error) {
             res.status(500).json({ message: 'Error retrieving delivery notes', error: error.message });
@@ -14,7 +14,7 @@ const deliveryNoteController = {
     // Get delivery note by ID
     getDeliveryNoteById: async (req, res) => {
         try {
-            const deliveryNote = await DeliveryNote.getById(req.params.id);
+            const deliveryNote = await DeliveryNote.getById(req.params.id, req.clinicId);
             if (deliveryNote) {
                 res.json(deliveryNote);
             } else {
@@ -28,7 +28,7 @@ const deliveryNoteController = {
     // Get delivery notes by supplier
     getDeliveryNotesBySupplier: async (req, res) => {
         try {
-            const deliveryNotes = await DeliveryNote.getBySupplier(req.params.supplierId);
+            const deliveryNotes = await DeliveryNote.getBySupplier(req.params.supplierId, req.clinicId);
             res.json(deliveryNotes);
         } catch (error) {
             res.status(500).json({ message: 'Error retrieving delivery notes', error: error.message });
@@ -42,7 +42,7 @@ const deliveryNoteController = {
             if (!startDate || !endDate) {
                 return res.status(400).json({ message: 'Start date and end date are required' });
             }
-            const deliveryNotes = await DeliveryNote.getByDateRange(startDate, endDate);
+            const deliveryNotes = await DeliveryNote.getByDateRange(startDate, endDate, req.clinicId);
             res.json(deliveryNotes);
         } catch (error) {
             res.status(500).json({ message: 'Error retrieving delivery notes', error: error.message });
@@ -72,7 +72,8 @@ const deliveryNoteController = {
                 total_amount: req.body.total_amount,
                 notes: req.body.notes,
                 items: req.body.items,
-                tax_summary: req.body.tax_summary
+                tax_summary: req.body.tax_summary,
+                clinic_id: req.clinicId
             };
 
             const newDeliveryNote = await DeliveryNote.create(deliveryNoteData);
@@ -105,7 +106,8 @@ const deliveryNoteController = {
                 total_amount: req.body.total_amount,
                 notes: req.body.notes,
                 items: req.body.items,
-                tax_summary: req.body.tax_summary
+                tax_summary: req.body.tax_summary,
+                clinic_id: req.clinicId
             };
 
             const updatedDeliveryNote = await DeliveryNote.update(req.params.id, deliveryNoteData);
@@ -122,7 +124,7 @@ const deliveryNoteController = {
     // Delete delivery note
     deleteDeliveryNote: async (req, res) => {
         try {
-            const result = await DeliveryNote.delete(req.params.id);
+            const result = await DeliveryNote.delete(req.params.id, req.clinicId);
             if (result) {
                 res.json({ message: 'Delivery note deleted successfully' });
             } else {

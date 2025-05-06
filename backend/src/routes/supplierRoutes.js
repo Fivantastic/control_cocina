@@ -1,6 +1,10 @@
 import express from 'express';
 const router = express.Router();
 import supplierController from '../controllers/supplierController.js';
+import { extractClinicIdSimple } from '../middleware/clinicMiddleware.js';
+
+// Aplicar el middleware a todas las rutas
+router.use(extractClinicIdSimple);
 
 // Get all suppliers
 router.get('/', supplierController.getAllSuppliers);

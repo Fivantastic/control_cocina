@@ -12,7 +12,7 @@ class MenuController {
                 });
             }
 
-            const menuData = await Menu.getMenuByWeek(weekNumber);
+            const menuData = await Menu.getMenuByWeek(weekNumber, req.clinicId);
             
             res.json({
                 success: true,
@@ -29,7 +29,7 @@ class MenuController {
 
     static async getAllMenuWeeks(req, res) {
         try {
-            const weeks = await Menu.getAllMenuWeeks();
+            const weeks = await Menu.getAllMenuWeeks(req.clinicId);
             
             res.json({
                 success: true,
