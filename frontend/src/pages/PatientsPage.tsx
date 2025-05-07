@@ -4,7 +4,8 @@ import {
   getPatientBreadAssignmentsTable, 
   PatientWithBreadAssignments,
   translateMealType,
-  translateRestrictionType
+  translateRestrictionType,
+  deletePatient
 } from '../services/patientService';
 import { 
   Container, 
@@ -20,30 +21,45 @@ import {
   Chip,
   Tooltip,
   CircularProgress,
-  Alert
+  Alert,
+  Button,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PatientForm from '../components/patients/PatientForm';
 
 const PatientsPage: React.FC = () => {
   const { selectedClinic } = useClinic();
   const [patients, setPatients] = useState<PatientWithBreadAssignments[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [formOpen, setFormOpen] = useState<boolean>(false);
+  const [selectedPatient, setSelectedPatient] = useState<PatientWithBreadAssignments | undefined>(undefined);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
+  const [patientToDelete, setPatientToDelete] = useState<PatientWithBreadAssignments | null>(null);
+
+  const fetchPatients = async () => {
+    try {
+      setLoading(true);
+      const data = await getPatientBreadAssignmentsTable();
+      setPatients(data);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching patients:', err);
+      setError('Error al cargar los pacientes. Por favor, inténtelo de nuevo más tarde.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        setLoading(true);
-        const data = await getPatientBreadAssignmentsTable();
-        setPatients(data);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching patients:', err);
-        setError('Error al cargar los pacientes. Por favor, inténtelo de nuevo más tarde.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (selectedClinic?.id === 2) { // Solo para la clínica Korian Ita (ID 2)
       fetchPatients();
     } else {
@@ -70,17 +86,25 @@ const PatientsPage: React.FC = () => {
       border: '1px solid #ccc'
     };
 
+    // Crear un componente que solo muestre el círculo de color y posiblemente 'EXT'
     return (
       <TableCell>
         <Tooltip title={assignment.description || ''}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={style}></Box>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{
+              backgroundColor: assignment.colorCode || '#ffffff',
+              width: '30px',
+              height: '30px',
+              borderRadius: '50%',
+              display: 'inline-block',
+              border: '1px solid #ccc'
+            }}></div>
             {isExtra && (
               <Typography variant="caption" sx={{ ml: 1 }}>
                 EXT
               </Typography>
             )}
-          </Box>
+          </div>
         </Tooltip>
       </TableCell>
     );
@@ -112,6 +136,35 @@ const PatientsPage: React.FC = () => {
     );
   };
 
+  const handleAddPatient = () => {
+    setSelectedPatient(undefined);
+    setFormOpen(true);
+  };
+
+  const handleEditPatient = (patient: PatientWithBreadAssignments) => {
+    setSelectedPatient(patient);
+    setFormOpen(true);
+  };
+
+  const handleDeletePatient = (patient: PatientWithBreadAssignments) => {
+    setPatientToDelete(patient);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDeletePatient = async () => {
+    if (patientToDelete) {
+      try {
+        await deletePatient(patientToDelete.id);
+        fetchPatients();
+        setDeleteDialogOpen(false);
+        setPatientToDelete(null);
+      } catch (error) {
+        console.error('Error al eliminar paciente:', error);
+        setError('Error al eliminar el paciente. Por favor, inténtelo de nuevo más tarde.');
+      }
+    }
+  };
+
   if (selectedClinic?.id !== 2) {
     return (
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -124,9 +177,19 @@ const PatientsPage: React.FC = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Gestión de Pacientes - {selectedClinic?.name}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h4" gutterBottom>
+          Gestión de Pacientes - {selectedClinic?.name}
+        </Typography>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          startIcon={<AddIcon />}
+          onClick={handleAddPatient}
+        >
+          Nuevo Paciente
+        </Button>
+      </Box>
       
       <Typography variant="subtitle1" gutterBottom>
         Sistema de codificación por colores para el pan y restricciones dietéticas
@@ -151,6 +214,7 @@ const PatientsPage: React.FC = () => {
                   <TableCell><strong>Merienda</strong></TableCell>
                   <TableCell><strong>Cena</strong></TableCell>
                   <TableCell><strong>Observaciones</strong></TableCell>
+                  <TableCell><strong>Acciones</strong></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -165,6 +229,22 @@ const PatientsPage: React.FC = () => {
                     <TableCell sx={{ maxWidth: 300 }}>
                       {renderRestrictions(patient)}
                     </TableCell>
+                    <TableCell>
+                      <IconButton 
+                        size="small" 
+                        color="primary"
+                        onClick={() => handleEditPatient(patient)}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton 
+                        size="small" 
+                        color="error"
+                        onClick={() => handleDeletePatient(patient)}
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -178,10 +258,49 @@ const PatientsPage: React.FC = () => {
           Leyenda de Colores
         </Typography>
         <Paper sx={{ p: 2 }}>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          <Typography variant="subtitle1" gutterBottom>
+            Desayuno
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FF0000', border: '1px solid #ccc' }}></Box>
-              <Typography variant="body2" sx={{ ml: 1 }}>Rojo - 1 bollo o un poco más de la mitad</Typography>
+              <Typography variant="body2" sx={{ ml: 1 }}>Rojo - 1 bollo</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FFFF00', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Amarillo - 1 bollo y 1/2</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#0000FF', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Azul - 2 bollos</Typography>
+            </Box>
+          </Box>
+
+          <Typography variant="subtitle1" gutterBottom>
+            Merienda
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FF0000', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Rojo - Medio bollo</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FFFF00', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Amarillo - Un poco más de la mitad del bollo</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#0000FF', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Azul - 1 bollo</Typography>
+            </Box>
+          </Box>
+
+          <Typography variant="subtitle1" gutterBottom>
+            Almuerzo y Cena
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FF0000', border: '1px solid #ccc' }}></Box>
+              <Typography variant="body2" sx={{ ml: 1 }}>Rojo - Un poco menos de la mitad del bollo</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FFFF00', border: '1px solid #ccc' }}></Box>
@@ -189,19 +308,48 @@ const PatientsPage: React.FC = () => {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#0000FF', border: '1px solid #ccc' }}></Box>
-              <Typography variant="body2" sx={{ ml: 1 }}>Azul - 1 bollo completo</Typography>
+              <Typography variant="body2" sx={{ ml: 1 }}>Azul - 1 bollo</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#8B4513', border: '1px solid #ccc' }}></Box>
-              <Typography variant="body2" sx={{ ml: 1 }}>Marrón - Porción especial</Typography>
-            </Box>
+          </Box>
+
+          <Typography variant="subtitle1" gutterBottom>
+            Extra
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box sx={{ width: 30, height: 30, borderRadius: '50%', backgroundColor: '#FF0000', border: '1px solid #ccc' }}></Box>
-              <Typography variant="body2" sx={{ ml: 1 }}>EXT - No lleva pan</Typography>
+              <Typography variant="body2" sx={{ ml: 1 }}>EXT - No lleva pan ni en almuerzo ni cena</Typography>
             </Box>
           </Box>
         </Paper>
       </Box>
+
+      {/* Formulario para añadir/editar pacientes */}
+      <PatientForm 
+        open={formOpen}
+        onClose={() => setFormOpen(false)}
+        patient={selectedPatient}
+        onSave={fetchPatients}
+      />
+
+      {/* Diálogo de confirmación para eliminar pacientes */}
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+      >
+        <DialogTitle>Confirmar eliminación</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            ¿Está seguro de que desea eliminar al paciente {patientToDelete?.name}? Esta acción no se puede deshacer.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)}>Cancelar</Button>
+          <Button onClick={confirmDeletePatient} color="error" variant="contained">
+            Eliminar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

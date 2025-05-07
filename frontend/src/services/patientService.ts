@@ -124,3 +124,73 @@ export const translateRestrictionType = (restrictionType: string): string => {
   };
   return translations[restrictionType] || restrictionType;
 };
+
+// Crear un nuevo paciente
+export const createPatient = async (name: string, notes?: string): Promise<Patient> => {
+  const response = await api.post('/patients', { name, notes });
+  return response.data;
+};
+
+// Actualizar un paciente existente
+export const updatePatient = async (id: number, name: string, notes?: string): Promise<Patient> => {
+  const response = await api.put(`/patients/${id}`, { name, notes });
+  return response.data;
+};
+
+// Eliminar un paciente
+export const deletePatient = async (id: number): Promise<void> => {
+  await api.delete(`/patients/${id}`);
+};
+
+// Asignar color de pan a un paciente para una comida específica
+export const assignBreadColor = async (
+  patientId: number, 
+  mealType: string, 
+  breadColorId: number, 
+  isExtra: boolean = false,
+  notes?: string
+): Promise<any> => {
+  const response = await api.post(`/patients/${patientId}/bread-assignment`, {
+    mealType,
+    breadColorId,
+    isExtra,
+    notes
+  });
+  return response.data;
+};
+
+// Eliminar asignación de pan para un paciente y comida específica
+export const deleteBreadAssignment = async (patientId: number, mealType: string): Promise<void> => {
+  await api.delete(`/patients/${patientId}/bread-assignment/${mealType}`);
+};
+
+// Añadir una restricción dietética a un paciente
+export const addDietaryRestriction = async (
+  patientId: number, 
+  restrictionType: string, 
+  description: string
+): Promise<DietaryRestriction> => {
+  const response = await api.post(`/patients/${patientId}/restriction`, {
+    restrictionType,
+    description
+  });
+  return response.data;
+};
+
+// Actualizar una restricción dietética
+export const updateDietaryRestriction = async (
+  restrictionId: number, 
+  restrictionType: string, 
+  description: string
+): Promise<DietaryRestriction> => {
+  const response = await api.put(`/patients/restriction/${restrictionId}`, {
+    restrictionType,
+    description
+  });
+  return response.data;
+};
+
+// Eliminar una restricción dietética
+export const deleteDietaryRestriction = async (restrictionId: number): Promise<void> => {
+  await api.delete(`/patients/restriction/${restrictionId}`);
+};

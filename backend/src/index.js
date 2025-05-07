@@ -11,6 +11,7 @@ import menuStockRoutes from './routes/menuStock.js';
 import deliveryNoteUploadRoutes from './routes/deliveryNoteUpload.js';
 import clinicRoutes from './routes/clinicRoutes.js';
 import patientRoutes from './routes/patientRoutes.js';
+import foodPortionsRoutes from './routes/foodPortionsRoutes.js';
 import { extractClinicIdSimple } from './middleware/clinicMiddleware.js';
 import { initializeParsers } from './parsers/initParsers.js';
 
@@ -74,6 +75,7 @@ app.use('/api/stock', stockMovementRoutes);
 app.use('/api/menu-stock', menuStockRoutes);
 app.use('/api/clinics', clinicRoutes);
 app.use('/api/patients', patientRoutes);
+app.use('/api/food-portions', foodPortionsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
